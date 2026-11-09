@@ -1,3 +1,5 @@
+export const instant = false;
+
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
@@ -17,19 +19,6 @@ import type { Lang, PageSection } from '@/lib/content/types';
 import { pickText, pickItem, pick } from '@/lib/content/types';
 import { slotUrl } from '@/lib/content/collections';
 
-export async function generateStaticParams() {
-  try {
-    const treatments = await getTreatments();
-    return treatments
-      .filter((t) => t.page_slug)
-      .flatMap((t) =>
-        ['es', 'en'].map((locale) => ({ locale, slug: t.page_slug! }))
-      );
-  } catch {
-    // Env vars not available at build time — pages will render on demand
-    return [];
-  }
-}
 
 export async function generateMetadata({
   params,

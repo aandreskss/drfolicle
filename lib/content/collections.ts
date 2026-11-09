@@ -135,10 +135,11 @@ export const getMediaByPath = unstable_cache(
   { tags: ['site'] }
 );
 
-/** URL pública de un archivo en el bucket media. */
+/** URL pública de un archivo. Sirve desde Next.js public/ por defecto;
+ *  si path es una URL completa (admin upload a Storage) la devuelve tal cual. */
 export function mediaUrl(path: string): string {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  return `${url}/storage/v1/object/public/media/${path}`;
+  if (path.startsWith('http')) return path;
+  return `/${path}`;
 }
 
 /** Mapa de id → URL para todos los archivos de media. */

@@ -18,12 +18,17 @@ import { pickText, pickItem, pick } from '@/lib/content/types';
 import { slotUrl } from '@/lib/content/collections';
 
 export async function generateStaticParams() {
-  const treatments = await getTreatments();
-  return treatments
-    .filter((t) => t.page_slug)
-    .flatMap((t) =>
-      ['es', 'en'].map((locale) => ({ locale, slug: t.page_slug! }))
-    );
+  try {
+    const treatments = await getTreatments();
+    return treatments
+      .filter((t) => t.page_slug)
+      .flatMap((t) =>
+        ['es', 'en'].map((locale) => ({ locale, slug: t.page_slug! }))
+      );
+  } catch {
+    // Env vars not available at build time — pages will render on demand
+    return [];
+  }
 }
 
 export async function generateMetadata({
@@ -31,15 +36,16 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const treatments = await getTreatments();
-  const t = treatments.find((tr) => tr.page_slug === slug);
-  if (!t) return {};
-  const name = pick(t.name, 'es');
-  return {
-    title: name,
-    description: pick(t.short, 'es'),
-  };
+  try {
+    const { slug } = await params;
+    const treatments = await getTreatments();
+    const t = treatments.find((tr) => tr.page_slug === slug);
+    if (!t) return {};
+    const name = pick(t.name, 'es');
+    return { title: name, description: pick(t.short, 'es') };
+  } catch {
+    return {};
+  }
 }
 
 function DatosSection({ section, lang }: { section: PageSection; lang: Lang }) {

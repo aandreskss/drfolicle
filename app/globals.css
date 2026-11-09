@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Colores de marca ── */
+  --color-teal: #0196AD;
+  --color-teal-deep: #007A8C;
+  --color-teal-petroleo: #00566E;
+  --color-ink: #0A2730;
+  --color-ink-2: #24414A;
+  --color-slate: #4B5F66;
+  --color-mist: #E3F2F4;
+  --color-mist-2: #EEF6F7;
+  --color-ground: #F7F8F5;
+  --color-lime: #C5D300;
+  --color-lime-hover: #D6E33A;
+  --color-line: #D5E3E6;
+  --color-line-soft: #E1E8EA;
+  --color-line-input: #CBD8DB;
+  --color-line-strong: #B9CDD2;
+  --color-danger: #B4232C;
+  --color-danger-bg: #FBEAEA;
+  --color-warn: #8A5A00;
+  --color-warn-bg: #FDF1D6;
+  --color-dark: #0A2730;
+  --color-dark-2: #17353E;
+  --color-dark-3: #0C4A5E;
+
+  /* ── Tipografía ── */
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+
+  /* ── Layout ── */
+  --max-width-wrap: 1280px;
+
+  /* ── Radios ── */
+  --radius-card: 28px;
+  --radius-pill: 999px;
+}
+
+:root { --wrap-pad: clamp(20px, 4vw, 48px); }
+body { background: #F7F8F5; color: #0A2730; font-family: var(--font-manrope), system-ui, sans-serif; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--wrap-pad); }
+
+/* Marcadores de posición — solo panel/vista previa, NUNCA en producción */
+.ph { background: repeating-linear-gradient(135deg, #E3F2F4 0 10px, #EEF6F7 10px 20px); }
+.ph-d { background: repeating-linear-gradient(135deg, #0C4A5E 0 12px, #0F5166 12px 24px); }
+
+/* Título con frase destacada: <h2>Texto <em class="accent">frase</em></h2> */
+.accent { font-family: var(--font-instrument), Georgia, serif; font-style: italic; font-weight: 400; color: #0196AD; }
+.dark .accent { color: #9BD3DC; }
+
+/* Botones y enlaces */
+.btn { transition: background-color .18s cubic-bezier(.2,.7,.2,1), color .18s, transform .18s, box-shadow .18s; cursor: pointer; }
+.btn:hover { transform: translateY(-1px); }
+.lnk svg { transition: transform .18s; } .lnk:hover svg { transform: translateX(4px); }
+.btn:focus-visible, .chip:focus-visible, .lnk:focus-visible, a:focus-visible { outline: none; box-shadow: 0 0 0 3px #F7F8F5, 0 0 0 6px #0196AD; }
+.dark .btn:focus-visible, .dark .chip:focus-visible, .dark a:focus-visible { box-shadow: 0 0 0 3px #0A2730, 0 0 0 6px #C5D300; }
+
+/* Tarjetas con zoom suave de imagen */
+.card img { transition: transform .56s cubic-bezier(.2,.7,.2,1); } .card:hover img { transform: scale(1.04); }
+
+/* Comparador antes/después */
+.ba:focus-within { box-shadow: 0 0 0 3px #0A2730, 0 0 0 6px #C5D300; }
+.ba input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+
+/* Presentación de fotos de Medellín (5 fotos, 20 s) */
+.tour-s { position: absolute; inset: 0; opacity: 0; animation: tourfade 20s infinite; }
+.tour-s:nth-child(1){animation-delay:0s}.tour-s:nth-child(2){animation-delay:4s}.tour-s:nth-child(3){animation-delay:8s}.tour-s:nth-child(4){animation-delay:12s}.tour-s:nth-child(5){animation-delay:16s}
+@keyframes tourfade { 0%{opacity:0} 4%{opacity:1} 20%{opacity:1} 24%{opacity:0} 100%{opacity:0} }
+@media (prefers-reduced-motion: reduce) {
+  *{ transition: none !important; scroll-behavior: auto !important }
+  .tour-s{ animation: none } .tour-s:nth-child(1){ opacity: 1 }
+}
+
+/* Rejillas de portada */
+.g-hero{grid-template-columns:1.05fr .95fr} .g-trust{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g-treat{grid-template-columns:repeat(12,minmax(0,1fr))}
+.t1{grid-column:1/span 5;grid-row:1/span 2} .t2{grid-column:6/span 7} .t3{grid-column:6/span 3} .t4{grid-column:9/span 4}
+@media (max-width:1100px){ .nav-links{display:none!important} .menu-btn{display:inline-flex} }
+@media (max-width:960px){ .g-hero,.g-res,.g-sci,.g-step,.g-spec,.g-tour,.g-testi,.g-form,.g-faq{grid-template-columns:1fr}
+  .g-treat{grid-template-columns:1fr} .t1,.t2,.t3,.t4{grid-column:1/-1;grid-row:auto} .g-trust,.g-foot{grid-template-columns:1fr 1fr} }
+@media (max-width:600px){ .g-trust,.g-foot,.g-two{grid-template-columns:1fr} .hide-sm{display:none!important} }

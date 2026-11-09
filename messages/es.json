@@ -1,0 +1,30 @@
+{
+  "site": {
+    "name": "Dr Follicle Solutions",
+    "cta": "Valoración gratis"
+  },
+  "nav": {
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "lang": "Idioma",
+    "skipToContent": "Ir al contenido principal"
+  },
+  "footer": {
+    "services": "Servicios",
+    "pages": "Páginas",
+    "contact": "Contacto",
+    "followUs": "Síguenos",
+    "privacyPolicy": "Privacidad, seguridad y condiciones"
+  },
+  "ui": {
+    "before": "Antes",
+    "after": "Después",
+    "realCase": "Caso real",
+    "dragToCompare": "Arrastra para comparar",
+    "home": "Inicio",
+    "readMore": "Leer más",
+    "viewMore": "Ver más",
+    "viewLess": "Ver menos",
+    "step": "Etapa"
+  }
+}

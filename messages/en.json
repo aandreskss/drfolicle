@@ -1,0 +1,30 @@
+{
+  "site": {
+    "name": "Dr Follicle Solutions",
+    "cta": "Free Assessment"
+  },
+  "nav": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "lang": "Language",
+    "skipToContent": "Skip to main content"
+  },
+  "footer": {
+    "services": "Services",
+    "pages": "Pages",
+    "contact": "Contact",
+    "followUs": "Follow us",
+    "privacyPolicy": "Privacy, security & terms"
+  },
+  "ui": {
+    "before": "Before",
+    "after": "After",
+    "realCase": "Real case",
+    "dragToCompare": "Drag to compare",
+    "home": "Home",
+    "readMore": "Read more",
+    "viewMore": "View more",
+    "viewLess": "View less",
+    "step": "Step"
+  }
+}

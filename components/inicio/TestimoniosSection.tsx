@@ -1,4 +1,5 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
+import { slotUrl } from '@/lib/content/collections';
+import { TestimoniosClient } from './TestimoniosClient';
 import type { PageSection, Lang, Testimonial } from '@/lib/content/types';
 import { pickText, pick } from '@/lib/content/types';
 
@@ -11,43 +12,34 @@ interface Props {
 export function TestimoniosSection({ section, lang, testimonials }: Props) {
   const text = pickText(section.data.content, lang);
   const visible = testimonials.filter((t) => t.authorization_confirmed);
-  if (visible.length === 0) return null;
+  const slots = section.data.slots ?? [];
+  const videoSrc = slotUrl(slots[0]?.src);
+  const videoPoster = slotUrl(slots[1]?.src);
+
+  const items = visible.map((t) => ({
+    id: t.id,
+    quote: pick(t.quote, lang),
+    author: t.author,
+    meta: [t.country, t.treatment].filter(Boolean).join(' · '),
+  }));
 
   return (
-    <section className="py-[clamp(72px,9vw,128px)] overflow-hidden">
-      <div className="wrap">
-        <div className="mb-10 max-w-[520px]">
-          <SectionHeading t1={text.t1 ?? ''} t2={text.t2} />
+    <section aria-labelledby="tes-t" aria-roledescription="carrusel" style={{ padding: 'clamp(72px,9vw,128px) 0' }}>
+      <div className="wrap" style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+
+        {/* Título */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: '24px' }}>
+          <h2 id="tes-t" style={{ margin: 0, fontSize: 'clamp(34px,4.4vw,60px)', lineHeight: 1, letterSpacing: '-0.035em', fontWeight: 800 }}>
+            {text.t1}
+            {text.t2 && <> <em className="accent">{text.t2}</em></>}
+          </h2>
         </div>
 
-        <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none -mx-[var(--wrap-pad)] px-[var(--wrap-pad)]">
-          {visible.map((t) => {
-            const quote = pick(t.quote, lang);
-            return (
-              <blockquote
-                key={t.id}
-                className="shrink-0 w-[min(360px,85vw)] snap-start rounded-[var(--radius-card)] bg-white border border-line p-7 flex flex-col gap-4"
-              >
-                <div className="flex gap-1" aria-hidden="true">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#C5D300" aria-hidden="true">
-                      <polygon points="12,2 15.1,8.3 22,9.3 17,14.1 18.2,21 12,17.8 5.8,21 7,14.1 2,9.3 8.9,8.3" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-ink leading-relaxed flex-1">
-                  &ldquo;{quote}&rdquo;
-                </p>
-                <footer>
-                  <p className="font-bold text-ink">{t.author}</p>
-                  <p className="text-sm text-slate">
-                    {[t.country, t.treatment].filter(Boolean).join(' · ')}
-                  </p>
-                </footer>
-              </blockquote>
-            );
-          })}
-        </div>
+        {items.length > 0 ? (
+          <TestimoniosClient items={items} videoSrc={videoSrc} videoPoster={videoPoster} lang={lang} />
+        ) : (
+          <p style={{ color: '#4B5F66', fontSize: '16px' }}>Los testimonios se mostrarán aquí una vez autorizados por los pacientes.</p>
+        )}
       </div>
     </section>
   );

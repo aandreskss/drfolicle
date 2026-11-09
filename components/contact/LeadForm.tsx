@@ -149,7 +149,7 @@ export function LeadForm({ lang, waPhone }: { lang: Lang; waPhone: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="rounded-[var(--radius-card)] border border-line bg-white p-8">
+    <form onSubmit={handleSubmit} noValidate className="rounded-[32px] border border-line bg-white p-8">
       {/* Honeypot — hidden from humans via CSS, not type="hidden" so bots fill it */}
       <div style={{ position: 'absolute', left: '-9999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
         <label htmlFor="website">Website</label>

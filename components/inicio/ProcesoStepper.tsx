@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, KeyboardEvent } from 'react';
-import Image from 'next/image';
 
 export interface ProcesoStep {
   t: string;
@@ -36,75 +35,131 @@ export function ProcesoStepper({ steps, stepLabel }: Props) {
 
   const step = steps[active];
   const tags = step?.m ? step.m.split(',').map((s) => s.trim()).filter(Boolean) : [];
+  const progress = active / (steps.length - 1);
+
+  function goNext() {
+    const next = (active + 1) % steps.length;
+    setActive(next);
+  }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1fr_420px] items-start">
-      {/* Panel */}
-      <div>
-        <div className="rounded-[var(--radius-card)] bg-white border border-line p-7 md:p-9 min-h-[260px]">
-          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-teal mb-3">
-            {stepLabel} {active + 1} / {steps.length}
-          </p>
-          <h3 className="text-2xl font-extrabold text-ink tracking-tight mb-3">{step?.t}</h3>
-          <p className="text-slate leading-relaxed">{step?.d}</p>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+
+      {/* ── Tabs con progress bar ── */}
+      <div
+        role="tablist"
+        aria-label={stepLabel}
+        style={{ position: 'relative', display: 'grid', gridTemplateColumns: `repeat(${steps.length}, minmax(0, 1fr))` }}
+      >
+        {/* Línea de fondo */}
+        <div aria-hidden="true" style={{ position: 'absolute', left: '22px', right: '22px', top: '21px', height: '2px', background: '#D5E3E6' }} />
+        {/* Línea de progreso */}
+        <div aria-hidden="true" style={{ position: 'absolute', left: '22px', top: '21px', height: '2px', width: `calc((100% - 44px) * ${progress})`, background: '#0196AD', transition: 'width .32s cubic-bezier(.2,.7,.2,1)' }} />
+
+        {steps.map((s, i) => {
+          const isActive = i === active;
+          const isDone = i < active;
+          return (
+            <button
+              key={i}
+              ref={(el) => { tabsRef.current[i] = el; }}
+              role="tab"
+              type="button"
+              aria-selected={isActive}
+              tabIndex={isActive ? 0 : -1}
+              onKeyDown={(e) => handleKeyDown(e, i)}
+              onClick={() => setActive(i)}
+              className="chip"
+              style={{
+                position: 'relative',
+                background: 'none',
+                border: 0,
+                padding: '0 8px 0 0',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: '14px',
+                cursor: 'pointer',
+                textAlign: 'left',
+                fontFamily: 'Manrope, sans-serif',
+                borderRadius: '12px',
+              }}
+            >
+              <span style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 800,
+                fontSize: '15px',
+                background: isActive ? '#0196AD' : isDone ? '#0196AD' : '#FFFFFF',
+                color: isActive || isDone ? '#FFFFFF' : '#0A2730',
+                border: `2px solid ${isActive ? '#0196AD' : isDone ? '#0196AD' : '#D5E3E6'}`,
+              }}>
+                {isDone
+                  ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                  : i + 1}
+              </span>
+              <span className="steplabel" style={{ fontSize: '15px', fontWeight: 700, color: isActive ? '#0A2730' : '#4B5F66', lineHeight: 1.3 }}>
+                {s.t}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* ── Panel con imagen + texto ── */}
+      <div
+        role="tabpanel"
+        className="g-step"
+        style={{
+          display: 'grid',
+          gap: 'clamp(28px,4vw,64px)',
+          alignItems: 'center',
+          background: '#F7F8F5',
+          borderRadius: '32px',
+          padding: 'clamp(16px,2vw,24px)',
+        }}
+      >
+        {/* Imagen */}
+        <div style={{ height: 'clamp(280px,30vw,420px)', borderRadius: '24px', overflow: 'hidden', position: 'relative', background: '#E3F2F4' }}>
+          {step?.imgSrc
+            ? <img src={step.imgSrc} alt={step.imgAlt ?? step.t} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 35%', display: 'block' }} />
+            : <div className="ph" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', padding: '24px' }}>
+                <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#00566E', maxWidth: '280px', lineHeight: 1.5 }}>{step?.t}</span>
+              </div>}
+        </div>
+
+        {/* Contenido */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '8px clamp(8px,2vw,32px) 8px 0' }}>
+          <span style={{ fontSize: '12px', letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>
+            {stepLabel} {active + 1} de {steps.length}
+          </span>
+          <strong style={{ fontSize: 'clamp(26px,2.6vw,36px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>{step?.t}</strong>
+          <p style={{ margin: 0, fontSize: '17px', color: '#24414A' }}>{step?.d}</p>
           {tags.length > 0 && (
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
               {tags.map((tag, i) => (
-                <span key={i} className="inline-flex items-center rounded-pill bg-mist px-3 py-1 text-xs font-semibold text-teal-deep">
+                <span key={i} style={{ height: '34px', padding: '0 14px', borderRadius: '999px', background: '#E3F2F4', color: '#00566E', fontSize: '13px', fontWeight: 700, display: 'inline-flex', alignItems: 'center' }}>
                   {tag}
                 </span>
               ))}
             </div>
           )}
+          <button
+            type="button"
+            className="btn"
+            onClick={goNext}
+            style={{ alignSelf: 'flex-start', marginTop: '8px', height: '52px', padding: '0 22px', border: 0, borderRadius: '14px', background: '#007A8C', color: '#FFFFFF', font: '700 15px Manrope, sans-serif', display: 'inline-flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+          >
+            {active < steps.length - 1 ? 'Siguiente etapa' : 'Solicitar valoración'}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </button>
         </div>
-
-        {/* Tabs below on mobile */}
-        <div role="tablist" aria-label={stepLabel} className="mt-4 flex gap-2 overflow-x-auto pb-1">
-          {steps.map((s, i) => {
-            const isActive = i === active;
-            return (
-              <button
-                key={i}
-                ref={(el) => { tabsRef.current[i] = el; }}
-                role="tab"
-                type="button"
-                id={`proc-tab-${i}`}
-                aria-selected={isActive}
-                aria-controls={`proc-panel-${i}`}
-                tabIndex={isActive ? 0 : -1}
-                onKeyDown={(e) => handleKeyDown(e, i)}
-                onClick={() => setActive(i)}
-                className={`flex shrink-0 h-11 items-center gap-2 rounded-[12px] border px-4 text-sm font-bold transition-all duration-[180ms] cursor-pointer focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_#F7F8F5,0_0_0_6px_#0196AD] ${
-                  isActive
-                    ? 'border-teal bg-teal text-white'
-                    : 'border-line bg-white text-ink hover:border-teal-deep'
-                }`}
-              >
-                <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-bold ${
-                  isActive ? 'bg-white/20' : 'bg-mist text-teal-deep'
-                }`}>
-                  {i + 1}
-                </span>
-                <span className="hidden sm:inline">{s.t}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Image */}
-      <div className="relative hidden lg:block aspect-[4/5] overflow-hidden rounded-[var(--radius-card)]">
-        {step?.imgSrc ? (
-          <Image
-            src={step.imgSrc}
-            alt={step.imgAlt ?? step.t}
-            fill
-            className="object-cover transition-opacity duration-300"
-            sizes="420px"
-          />
-        ) : (
-          <div className="h-full w-full bg-mist" />
-        )}
       </div>
     </div>
   );

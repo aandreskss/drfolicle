@@ -137,7 +137,7 @@ export function HeaderInner({
                         {menuTreatments.map((t) => (
                           <Link
                             key={t.id}
-                            href={t.page_slug ? `/${t.page_slug}` : item.href}
+                            href={t.page_slug ? `/servicios/${t.page_slug}` : item.href}
                             role="menuitem"
                             onClick={() => setDropdownOpen(false)}
                             className="rounded-[14px] border border-line p-4 hover:border-teal hover:bg-mist transition-all duration-150 focus-visible:outline-none focus-visible:shadow-[0_0_0_2px_#0196AD]"
@@ -236,14 +236,29 @@ export function HeaderInner({
           className="fixed top-16 left-0 right-0 z-20 border-b border-line bg-ground px-5 pb-6 pt-2 shadow-[0_24px_48px_rgba(10,39,48,0.12)]"
         >
           {visibleNav.map((item) => (
-            <Link
-              key={item.position}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className="flex border-b border-line py-[14px] text-[26px] font-extrabold tracking-[-0.02em] text-ink hover:text-teal-deep transition-colors duration-150"
-            >
-              {pickLabel(item.label)}
-            </Link>
+            <div key={item.position}>
+              <Link
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex border-b border-line py-[14px] text-[26px] font-extrabold tracking-[-0.02em] text-ink hover:text-teal-deep transition-colors duration-150"
+              >
+                {pickLabel(item.label)}
+              </Link>
+              {item.has_submenu && menuTreatments.length > 0 && (
+                <div className="flex flex-col gap-1 py-2 pl-4 border-b border-line">
+                  {menuTreatments.map((t) => (
+                    <Link
+                      key={t.id}
+                      href={t.page_slug ? `/servicios/${t.page_slug}` : item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="py-2 text-[17px] font-semibold text-slate hover:text-teal-deep transition-colors duration-150"
+                    >
+                      {pickLabel(t.name)}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
           <div className="mt-5 flex gap-3">
             <Link

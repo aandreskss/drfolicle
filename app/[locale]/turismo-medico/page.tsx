@@ -64,6 +64,15 @@ export default async function TurismoPage({ params }: { params: Promise<{ locale
     ? ['Hotel', 'Rooms', 'The clinic', 'Tourist tours']
     : ['Hotel', 'Habitaciones', 'La clínica', 'Salidas turísticas'];
 
+  // Imágenes de referencia (Unsplash) mientras el CMS no tenga slots propios
+  const ESTADIA_MAIN = 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=1200&q=80';
+  const ESTADIA_REF = [
+    { src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80', alt: lang === 'en' ? 'Hotel in Medellín' : 'Hotel en Medellín' },
+    { src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=700&q=80', alt: lang === 'en' ? 'Premium hotel room' : 'Habitación de hotel premium' },
+    { src: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=700&q=80', alt: lang === 'en' ? 'Modern clinic' : 'Clínica moderna' },
+    { src: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=700&q=80', alt: lang === 'en' ? 'El Peñol de Guatapé' : 'El Peñol de Guatapé, Antioquia' },
+  ];
+
   // --- INCLUYE ---
   const incluyeSection = get('incluye');
   const incluyeText = incluyeSection ? pickText(incluyeSection.data.content, lang) : null;
@@ -172,30 +181,22 @@ export default async function TurismoPage({ params }: { params: Promise<{ locale
             </p>
           </div>
           <div className="g-stay" style={{ display: 'grid', gap: '20px', alignItems: 'stretch' }}>
-            <div style={{ position: 'relative', minHeight: '360px', borderRadius: '28px', overflow: 'hidden', background: '#0C4A5E', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px', textAlign: 'center', padding: '24px' }}>
+            <div style={{ position: 'relative', minHeight: '360px', borderRadius: '28px', overflow: 'hidden', background: '#0C4A5E' }}>
               {estadiaVideoSlot?.src ? (
                 <VideoAutoplay src={slotUrl(estadiaVideoSlot.src)} controls playsInline aria-label={pick(estadiaVideoSlot.alt, lang)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               ) : (
-                <>
-                  <span style={{ width: '72px', height: '72px', borderRadius: '50%', background: '#C5D300', color: '#0A2730', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
-                  </span>
-                  <strong style={{ fontSize: '20px', color: '#FFFFFF' }}>[{lang === 'en' ? 'Video: hotel, clinic and city' : 'Video: hotel, clínica y ciudad'}]</strong>
-                  <span style={{ fontSize: '14px', color: '#BFD6DB', maxWidth: '360px' }}>
-                    {lang === 'en' ? 'Stay video will appear here, with consent from those featured.' : 'Aquí va el video de la estadía, con la autorización de quienes aparecen.'}
-                  </span>
-                </>
+                <img src={ESTADIA_MAIN} alt={lang === 'en' ? 'Stay in Medellín' : 'Estadía en Medellín'} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               )}
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
               {estadiaLabels.map((label, i) => {
                 const slot = estadiaImgSlots[i];
                 return (
-                  <figure key={i} style={{ margin: 0, position: 'relative', aspectRatio: '1/1', borderRadius: '20px', overflow: 'hidden', background: slot?.src ? '#0C4A5E' : '#E3F2F4', border: slot?.src ? undefined : '1px dashed #9BB9C0' }}>
+                  <figure key={i} style={{ margin: 0, position: 'relative', aspectRatio: '1/1', borderRadius: '20px', overflow: 'hidden', background: '#0C4A5E' }}>
                     {slot?.src ? (
                       <img src={slotUrl(slot.src) ?? undefined} alt={pick(slot.alt, lang)} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                     ) : (
-                      <span style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '12px', fontSize: '13px', color: '#4B5F66' }}>[{label}]</span>
+                      <img src={ESTADIA_REF[i]?.src} alt={ESTADIA_REF[i]?.alt ?? label} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                     )}
                     <figcaption style={{ position: 'absolute', left: '12px', bottom: '12px', height: '32px', padding: '0 12px', borderRadius: '999px', background: 'rgba(255,255,255,0.94)', color: '#0A2730', fontSize: '13px', fontWeight: 700, display: 'inline-flex', alignItems: 'center' }}>
                       {slot?.label || label}

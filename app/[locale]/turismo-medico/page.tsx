@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { getPageSections } from '@/lib/content/sections';
 import { getTestimonials, getFaqs, slotUrl } from '@/lib/content/collections';
 import { Accordion } from '@/components/ui/Accordion';
+import { VideoAutoplay } from '@/components/ui/VideoAutoplay';
 import { ViajeStepperClient } from '@/components/turismo/ViajeStepperClient';
 import { Link } from '@/i18n/navigation';
 import type { Lang } from '@/lib/content/types';
@@ -173,9 +174,7 @@ export default async function TurismoPage({ params }: { params: Promise<{ locale
           <div className="g-stay" style={{ display: 'grid', gap: '20px', alignItems: 'stretch' }}>
             <div style={{ position: 'relative', minHeight: '360px', borderRadius: '28px', overflow: 'hidden', background: '#0C4A5E', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px', textAlign: 'center', padding: '24px' }}>
               {estadiaVideoSlot?.src ? (
-                <video controls playsInline preload="none" aria-label={pick(estadiaVideoSlot.alt, lang)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
-                  <source src={slotUrl(estadiaVideoSlot.src) ?? undefined} />
-                </video>
+                <VideoAutoplay src={slotUrl(estadiaVideoSlot.src)} controls playsInline aria-label={pick(estadiaVideoSlot.alt, lang)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               ) : (
                 <>
                   <span style={{ width: '72px', height: '72px', borderRadius: '50%', background: '#C5D300', color: '#0A2730', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -261,9 +260,7 @@ export default async function TurismoPage({ params }: { params: Promise<{ locale
           <figure style={{ margin: 0, position: 'relative', minHeight: '520px', borderRadius: '28px', overflow: 'hidden', background: '#0A2730' }}>
             {testimonioVideoSlot?.src ? (
               <>
-                <video controls playsInline preload="none" aria-label={pick(testimonioVideoSlot.alt, lang)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
-                  <source src={slotUrl(testimonioVideoSlot.src) ?? undefined} />
-                </video>
+                <VideoAutoplay src={slotUrl(testimonioVideoSlot.src)} controls playsInline aria-label={pick(testimonioVideoSlot.alt, lang)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 <figcaption style={{ position: 'absolute', left: '16px', top: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px', height: '32px', padding: '0 12px', borderRadius: '999px', background: 'rgba(10,39,48,0.82)', color: '#FFFFFF', fontSize: '12px', fontWeight: 700, pointerEvents: 'none' }}>
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#C5D300' }} />
                   {lang === 'en' ? 'International patient · in English' : 'Paciente internacional · en inglés'}

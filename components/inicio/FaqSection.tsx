@@ -1,4 +1,5 @@
 import { Accordion } from '@/components/ui/Accordion';
+import { VideoAutoplay } from '@/components/ui/VideoAutoplay';
 import { slotUrl } from '@/lib/content/collections';
 import type { PageSection, Lang, Faq } from '@/lib/content/types';
 import { pickText, pick } from '@/lib/content/types';
@@ -47,15 +48,13 @@ export function FaqSection({ section, lang, faqs }: Props) {
               {videos.slice(0, 2).map((v, i) => (
                 <figure key={i} style={{ margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <div style={{ aspectRatio: '9 / 16', borderRadius: '18px', overflow: 'hidden', background: '#0A2730' }}>
-                    <video
+                    <VideoAutoplay
+                      src={v.src}
                       controls
                       playsInline
-                      preload="none"
                       aria-label={v.label}
                       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                    >
-                      <source src={v.src!} />
-                    </video>
+                    />
                   </div>
                   {v.label && (
                     <figcaption style={{ fontSize: '13px', lineHeight: 1.4 }}>

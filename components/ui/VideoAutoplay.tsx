@@ -9,11 +9,12 @@ interface Props {
   playsInline?: boolean;
   poster?: string;
   style?: React.CSSProperties;
+  className?: string;
   'aria-label'?: string;
   threshold?: number;
 }
 
-export function VideoAutoplay({ src, loop, controls, playsInline, poster, style, 'aria-label': ariaLabel, threshold = 0.25 }: Props) {
+export function VideoAutoplay({ src, loop, controls, playsInline, poster, style, className, 'aria-label': ariaLabel, threshold = 0.25 }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ export function VideoAutoplay({ src, loop, controls, playsInline, poster, style,
       preload="none"
       poster={poster}
       style={style}
+      className={className}
       aria-label={ariaLabel}
     />
   );

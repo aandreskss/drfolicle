@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getPageSections } from '@/lib/content/sections';
 import { getCases, getTestimonials, getAllMedia, slotUrl } from '@/lib/content/collections';
+import { VideoAutoplay } from '@/components/ui/VideoAutoplay';
 import { ResultadosGaleriaClient } from '@/components/resultados/ResultadosGaleriaClient';
 import { Link } from '@/i18n/navigation';
 import type { Lang } from '@/lib/content/types';
@@ -49,7 +50,7 @@ export default async function ResultadosPage({ params }: { params: Promise<{ loc
     title: pick(c.title, lang),
     tech: lang === 'en' ? 'FUE hair transplant' : 'Trasplante capilar FUE',
     units: c.units ? (lang === 'en' ? `${c.units} units` : `${c.units} unidades`) : '',
-    months: c.months ?? '',
+    months: c.months ? (lang === 'en' ? `${c.months} months` : `${c.months} meses`) : '',
     origin: c.origin ?? '',
     beforeSrc: mediaMap[c.before_media_id!] ?? '',
     afterSrc: mediaMap[c.after_media_id!] ?? '',
@@ -140,9 +141,7 @@ export default async function ResultadosPage({ params }: { params: Promise<{ loc
             <figure style={{ margin: 0, position: 'relative', minHeight: '560px', borderRadius: '28px', overflow: 'hidden', background: '#0A2730' }}>
               {testiVideoSlot?.src ? (
                 <>
-                  <video controls playsInline preload="none" aria-label={pick(testiVideoSlot.alt, lang)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
-                    <source src={slotUrl(testiVideoSlot.src) ?? undefined} />
-                  </video>
+                  <VideoAutoplay src={slotUrl(testiVideoSlot.src)} controls playsInline aria-label={pick(testiVideoSlot.alt, lang)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                   <figcaption style={{ position: 'absolute', left: '16px', top: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px', height: '32px', padding: '0 12px', borderRadius: '999px', background: 'rgba(10,39,48,0.82)', color: '#FFFFFF', fontSize: '12px', fontWeight: 700, pointerEvents: 'none' }}>
                     <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#C5D300' }} />
                     {lang === 'en' ? 'International patient · in English' : 'Paciente internacional · en inglés'}

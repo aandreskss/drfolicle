@@ -1,3 +1,5 @@
+import { VideoAutoplay } from '@/components/ui/VideoAutoplay';
+
 interface VideoCardProps {
   src: string;
   poster?: string;
@@ -8,17 +10,14 @@ interface VideoCardProps {
 export function VideoCard({ src, poster, title, className = '' }: VideoCardProps) {
   return (
     <figure className={`overflow-hidden rounded-[var(--radius-card)] bg-dark ${className}`}>
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <video
+      <VideoAutoplay
+        src={src}
         controls
         playsInline
-        preload="none"
         poster={poster}
-        title={title}
+        aria-label={title}
         className="w-full aspect-video object-cover"
-      >
-        <source src={src} />
-      </video>
+      />
       {title && (
         <figcaption className="px-4 py-3 text-sm font-semibold text-white/80">
           {title}

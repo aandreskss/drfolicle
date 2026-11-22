@@ -56,22 +56,18 @@ export function CienciaSection({ section, lang }: Props) {
             )}
 
             {/* Video card */}
-            {(videoSrc || videoPoster) && (
-              <div style={{ background: '#FFFFFF', border: '1px solid #D5E3E6', borderRadius: '24px', padding: '20px', display: 'flex', gap: '22px', alignItems: 'center' }}>
-                <div style={{ flexShrink: 0, width: '132px', aspectRatio: '9 / 16', borderRadius: '16px', overflow: 'hidden', background: '#0A2730' }}>
-                  {videoSrc
-                    ? <video controls playsInline preload="none" poster={videoPoster ?? undefined} aria-label="Video: paciente cuenta cómo es el procedimiento" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}><source src={videoSrc} /></video>
-                    : videoPoster
-                      ? <img src={videoPoster} alt="Video placeholder" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                      : null}
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>Lo cuentan nuestros pacientes</span>
-                  <strong style={{ fontSize: '24px', letterSpacing: '-0.02em' }}>No duele.</strong>
-                  <span style={{ fontSize: '15px', color: '#4B5F66' }}>Escucha a un paciente contar cómo vive el procedimiento.</span>
-                </div>
+            <div style={{ background: '#FFFFFF', border: '1px solid #D5E3E6', borderRadius: '24px', padding: '20px', display: 'flex', gap: '22px', alignItems: 'center' }}>
+              <div style={{ flexShrink: 0, width: '132px', aspectRatio: '9 / 16', borderRadius: '16px', overflow: 'hidden', background: '#0A2730' }}>
+                <video controls playsInline preload="none" aria-label="Video: paciente cuenta cómo es el procedimiento" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
+                  <source src="/videos/does-it-hurt.mp4" type="video/mp4" />
+                </video>
               </div>
-            )}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>Lo cuentan nuestros pacientes</span>
+                <strong style={{ fontSize: '24px', letterSpacing: '-0.02em' }}>No duele.</strong>
+                <span style={{ fontSize: '15px', color: '#4B5F66' }}>Escucha a un paciente contar cómo vive el procedimiento.</span>
+              </div>
+            </div>
           </div>
 
           {/* ── Columna derecha: técnica FUE ── */}

@@ -123,13 +123,21 @@ export function ProcesoStepper({ steps, stepLabel }: Props) {
           padding: 'clamp(16px,2vw,24px)',
         }}
       >
-        {/* Imagen */}
-        <div style={{ height: 'clamp(280px,30vw,420px)', borderRadius: '24px', overflow: 'hidden', position: 'relative', background: '#E3F2F4' }}>
-          {step?.imgSrc
-            ? <img src={step.imgSrc} alt={step.imgAlt ?? step.t} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 35%', display: 'block' }} />
-            : <div className="ph" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', padding: '24px' }}>
-                <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#00566E', maxWidth: '280px', lineHeight: 1.5 }}>{step?.t}</span>
-              </div>}
+        {/* Imagen / Video */}
+        <div style={{ height: 'clamp(280px,30vw,420px)', borderRadius: '24px', overflow: 'hidden', position: 'relative', background: '#0A2730' }}>
+          {active === 0
+            ? <iframe
+                src="https://www.youtube.com/embed/IurbJx78HvU"
+                title="Valoración gratis — Dr Follicle Solutions"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+              />
+            : step?.imgSrc
+              ? <img src={step.imgSrc} alt={step.imgAlt ?? step.t} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 35%', display: 'block' }} />
+              : <div className="ph" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', padding: '24px' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#00566E', maxWidth: '280px', lineHeight: 1.5 }}>{step?.t}</span>
+                </div>}
         </div>
 
         {/* Contenido */}

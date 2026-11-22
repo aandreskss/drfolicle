@@ -29,8 +29,8 @@ export const getCases = unstable_cache(
     if (error) { console.error('getCases', error.message); return []; }
     return (data ?? []) as Case[];
   },
-  ['cases'],
-  { tags: ['site'] }
+  ['cases-v2'],
+  { tags: ['site'], revalidate: 3600 }
 );
 
 export const getTeam = unstable_cache(
@@ -154,8 +154,8 @@ export const getAllMedia = unstable_cache(
       ((data ?? []) as Row[]).map((m) => [m.id, mediaUrl(m.path)])
     );
   },
-  ['media-map'],
-  { tags: ['site'] }
+  ['media-map-v2'],
+  { tags: ['site'], revalidate: 3600 }
 );
 
 /** Convierte un src de slot (ruta relativa o URL) a URL usable en <img>. */

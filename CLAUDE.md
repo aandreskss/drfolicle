@@ -4,8 +4,45 @@ Sitio web premium + panel de administración para una clínica de restauración 
 
 **Handoff con diseño aprobado y migraciones:** `C:\Users\Andre\OneDrive\Documentos\Claude\Projects\Follicle\follicle-handoff\`
 
+---
+
+## 🔴 MIGRACIÓN PENDIENTE — Próxima sesión
+
+**Objetivo:** Convertir el sitio a **estático + GoDaddy + Claude Code como CMS**.
+
+### Decisión tomada
+- Eliminar Supabase, Railway/Vercel y el panel admin
+- Pasar a sitio estático (`output: 'export'`) alojado en GoDaddy (FTP)
+- El contenido vive en archivos `.ts` en `/data/` — se edita con Claude Code
+- Las editoras no técnicas piden cambios a Claude.ai en lenguaje natural
+- GitHub Actions compila y sube por FTP a GoDaddy en cada push
+
+### Plan de migración
+1. **Exportar datos de Supabase** a archivos estáticos:
+   - `/data/sections/` — contenido de cada sección por página
+   - `/data/cases.ts` — casos antes/después con metadata inventada
+   - `/data/settings.ts` — contacto, nav, footer
+   - `/data/blog.ts` — 5 artículos existentes
+   - `/data/faqs.ts` — preguntas frecuentes
+   - `/data/team.ts` — equipo
+   - `/data/testimonials.ts` — testimonios
+   - `/data/treatments.ts` — tratamientos
+2. **Reescribir `lib/content/`** para leer de `/data/` en vez de Supabase
+3. **Descargar imágenes** de Supabase Storage a `public/images/`
+4. **Configurar `output: 'export'`** en `next.config.ts` + ajustar i18n
+5. **Cambiar formulario de contacto** a Formspree (gratis, HTML form)
+6. **GitHub Actions** — workflow que hace `pnpm build` + sube `out/` a GoDaddy vía FTP
+7. **Eliminar `/app/admin/`** y todas las dependencias de Supabase
+8. **Verificar build estático** completo antes de apuntar dominio a GoDaddy
+
+### Credenciales GoDaddy necesarias para la migración
+- Host FTP, usuario FTP, contraseña FTP, directorio raíz del hosting
+- (Pedir al cliente antes de la sesión)
+
+---
+
 ## Stack
-Next.js 16 App Router · TypeScript estricto · Tailwind v4 · Supabase (Postgres/Auth/Storage/RLS) · Vercel · next-intl (es/en) · pnpm
+Next.js 16 App Router · TypeScript estricto · Tailwind v4 · Supabase (Postgres/Auth/Storage/RLS) · Railway · next-intl (es/en) · pnpm
 
 Comandos: `pnpm dev` · `pnpm lint` · `pnpm typecheck` · `pnpm build`
 

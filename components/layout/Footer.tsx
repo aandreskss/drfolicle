@@ -159,7 +159,7 @@ export async function Footer() {
               </a>
             )}
             <span style={{ color: '#BFD6DB' }}>
-              {contact?.city ?? 'Medellín, Antioquia, Colombia'}
+              {contact?.city ?? 'Medellín - Antioquia'}
               {(contact?.address || contact?.hours) && (
                 <><br />{[contact?.address, contact?.hours].filter(Boolean).join(' · ')}</>
               )}

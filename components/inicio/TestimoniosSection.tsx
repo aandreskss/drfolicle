@@ -35,7 +35,7 @@ export function TestimoniosSection({ section, lang, testimonials }: Props) {
         </div>
 
         {items.length > 0 ? (
-          <TestimoniosClient items={items} videoSrc="/videos/testimonio-reel.mov" videoPoster={videoPoster} lang={lang} />
+          <TestimoniosClient items={items} videoSrc="/videos/testimonio-reel.mp4" videoPoster={videoPoster} lang={lang} />
         ) : (
           <p style={{ color: '#4B5F66', fontSize: '16px' }}>Los testimonios se mostrarán aquí una vez autorizados por los pacientes.</p>
         )}

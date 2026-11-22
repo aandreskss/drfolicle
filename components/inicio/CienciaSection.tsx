@@ -1,6 +1,7 @@
 import { slotUrl } from '@/lib/content/collections';
 import type { PageSection, Lang } from '@/lib/content/types';
 import { pickText, pickItem } from '@/lib/content/types';
+import { VideoAutoplay } from '@/components/ui/VideoAutoplay';
 
 interface Props {
   section: PageSection;
@@ -58,9 +59,13 @@ export function CienciaSection({ section, lang }: Props) {
             {/* Video card */}
             <div style={{ background: '#FFFFFF', border: '1px solid #D5E3E6', borderRadius: '24px', padding: '20px', display: 'flex', gap: '22px', alignItems: 'center' }}>
               <div style={{ flexShrink: 0, width: '132px', aspectRatio: '9 / 16', borderRadius: '16px', overflow: 'hidden', background: '#0A2730' }}>
-                <video controls playsInline preload="none" aria-label="Video: paciente cuenta cómo es el procedimiento" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
-                  <source src="/videos/does-it-hurt.mp4" type="video/mp4" />
-                </video>
+                <VideoAutoplay
+                  src="/videos/does-it-hurt.mp4"
+                  controls
+                  playsInline
+                  aria-label="Video: paciente cuenta cómo es el procedimiento"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>Lo cuentan nuestros pacientes</span>

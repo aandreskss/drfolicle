@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { VideoAutoplay } from '@/components/ui/VideoAutoplay';
 
 export interface TestimonialItem {
   id: string;
@@ -57,16 +58,14 @@ export function TestimoniosClient({ items, videoSrc, videoPoster, youtubeId, lan
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, display: 'block' }}
             />
           ) : videoSrc ? (
-            <video
+            <VideoAutoplay
+              src={videoSrc}
               controls
               playsInline
-              preload="none"
               poster={videoPoster ?? undefined}
               aria-label="Video: paciente internacional cuenta por qué eligió Dr Follicle Solutions"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            >
-              <source src={videoSrc} />
-            </video>
+            />
           ) : (
             <div className="ph-d" style={{ position: 'absolute', inset: 0 }} />
           )}

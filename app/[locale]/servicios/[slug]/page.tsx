@@ -10,6 +10,7 @@ import { getSettings } from '@/lib/content/settings';
 import { Accordion } from '@/components/ui/Accordion';
 import { ZonasSelectorClient } from '@/components/servicios/ZonasSelectorClient';
 import { TratamientoResultadosClient } from '@/components/servicios/TratamientoResultadosClient';
+import { VideoAutoplay } from '@/components/ui/VideoAutoplay';
 import type { Lang } from '@/lib/content/types';
 import { pickText, pickItem, pick } from '@/lib/content/types';
 
@@ -252,15 +253,13 @@ export default async function TratamientoPage({
                   )}
                 </div>
                 <div style={{ position: 'relative', borderRadius: '28px', overflow: 'hidden', background: '#0A2730', aspectRatio: '9/16', maxHeight: '520px' }}>
-                  <video
+                  <VideoAutoplay
+                    src="/videos/how-long-capilar.mp4"
                     controls
                     playsInline
-                    preload="none"
                     aria-label="Video: ¿Cuándo crece el cabello después del trasplante?"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  >
-                    <source src="/videos/how-long-capilar.mp4" />
-                  </video>
+                  />
                 </div>
               </div>
             ) : (

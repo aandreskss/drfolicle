@@ -195,7 +195,7 @@ export default async function ContactoPage({
               </h2>
               <span style={{ fontSize: '15px', color: '#24414A' }}>
                 {address ? <>{address}<br /></> : null}
-                Medellín, Antioquia, Colombia
+                Medellín - Antioquia
               </span>
               {hours && <span style={{ fontSize: '14px', color: '#4B5F66' }}>{hours}</span>}
               <a

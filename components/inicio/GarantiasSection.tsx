@@ -1,4 +1,5 @@
 import type { Lang } from '@/lib/content/types';
+import { VideoAutoplay } from '@/components/ui/VideoAutoplay';
 
 interface Props {
   lang: Lang;
@@ -39,15 +40,13 @@ export function GarantiasSection({ lang: _ }: Props) {
         {/* ── Columna izquierda — video ── */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
           <div className="card" style={{ borderRadius: '28px', overflow: 'hidden', background: '#0A2730', aspectRatio: '9 / 16', maxHeight: '580px', position: 'relative' }}>
-            <video
+            <VideoAutoplay
+              src="/videos/when-does-it-grow.mp4"
               controls
               playsInline
-              preload="none"
               aria-label="Video: ¿cuándo vuelve a crecer el cabello?"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            >
-              <source src="/videos/when-does-it-grow.mp4" type="video/mp4" />
-            </video>
+            />
           </div>
           <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '4px', paddingLeft: '4px' }}>
             <span style={{ fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>

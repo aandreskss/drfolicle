@@ -1,6 +1,7 @@
 import { Link } from '@/i18n/navigation';
 import type { PageSection, Lang, Treatment } from '@/lib/content/types';
 import { pickText, pick } from '@/lib/content/types';
+import { VideoAutoplay } from '@/components/ui/VideoAutoplay';
 
 interface Props {
   section: PageSection;
@@ -21,11 +22,9 @@ function CardT1({ href, num, name, short, imgSrc }: { href: string; num: string;
   return (
     <Link href={href} className="card lnk t1" style={{ textDecoration: 'none', color: '#0A2730', display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <div style={{ flex: 1, minHeight: '520px', borderRadius: '28px 28px 999px 999px', overflow: 'hidden', position: 'relative' }}>
-        <video
+        <VideoAutoplay
           src="/videos/beard-treatment.mp4"
-          autoPlay
           loop
-          muted
           playsInline
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 30%', display: 'block' }}
         />

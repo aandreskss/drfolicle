@@ -33,9 +33,11 @@ export function ViajeStepperClient({ steps, lang }: { steps: ViajeStep[]; lang: 
               onClick={() => setIdx(i)}
               aria-selected={on}
               style={{
+                position: 'relative',
+                overflow: 'hidden',
                 border: `1.5px solid ${on ? '#0A2730' : '#D5E3E6'}`,
-                background: on ? '#0A2730' : '#FFFFFF',
-                color: on ? '#FFFFFF' : '#0A2730',
+                background: s.imgSrc ? (on ? '#0A2730' : '#0C4A5E') : (on ? '#0A2730' : '#FFFFFF'),
+                color: '#FFFFFF',
                 borderRadius: '20px',
                 padding: '16px',
                 display: 'flex',
@@ -48,8 +50,16 @@ export function ViajeStepperClient({ steps, lang }: { steps: ViajeStep[]; lang: 
                 minHeight: '132px',
               }}
             >
-              <span style={{ fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, color: on ? '#C5D300' : '#007A8C' }}>{s.when}</span>
-              <strong style={{ fontSize: '16px', lineHeight: 1.25 }}>{s.title}</strong>
+              {s.imgSrc && (
+                <img
+                  src={s.imgSrc}
+                  alt=""
+                  aria-hidden="true"
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 40%', display: 'block', opacity: on ? 0.45 : 0.3, filter: 'brightness(0.7)' }}
+                />
+              )}
+              <span style={{ position: 'relative', zIndex: 1, fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, color: on ? '#C5D300' : (s.imgSrc ? '#9BD3DC' : '#007A8C') }}>{s.when}</span>
+              <strong style={{ position: 'relative', zIndex: 1, fontSize: '16px', lineHeight: 1.25, color: s.imgSrc ? '#FFFFFF' : (on ? '#FFFFFF' : '#0A2730') }}>{s.title}</strong>
             </button>
           );
         })}

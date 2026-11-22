@@ -9,7 +9,7 @@ import { TratamientosSection } from '@/components/inicio/TratamientosSection';
 import { ResultadosSection } from '@/components/inicio/ResultadosSection';
 import { CienciaSection } from '@/components/inicio/CienciaSection';
 import { ProcesoSection } from '@/components/inicio/ProcesoSection';
-import { EspecialistasSection } from '@/components/inicio/EspecialistasSection';
+import { GarantiasSection } from '@/components/inicio/GarantiasSection';
 import { TurismoSection } from '@/components/inicio/TurismoSection';
 import { TestimoniosSection } from '@/components/inicio/TestimoniosSection';
 import { ConsultaSection } from '@/components/inicio/ConsultaSection';
@@ -41,7 +41,7 @@ export default async function HomePage({
     resultados: (s) => <ResultadosSection section={s} lang={lang} cases={cases} mediaMap={mediaMap} />,
     ciencia: (s) => <CienciaSection section={s} lang={lang} />,
     proceso: (s) => <ProcesoSection section={s} lang={lang} />,
-    especialistas: (s) => <EspecialistasSection section={s} lang={lang} team={team} mediaMap={mediaMap} />,
+    especialistas: () => <GarantiasSection lang={lang} />,
     turismo: (s) => <TurismoSection section={s} lang={lang} />,
     testimonios: (s) => <TestimoniosSection section={s} lang={lang} testimonials={testimonials} />,
     consulta: (s) => <ConsultaSection section={s} lang={lang} />,

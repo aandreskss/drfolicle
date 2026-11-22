@@ -11,9 +11,8 @@ interface Props {
 
 export function TestimoniosSection({ section, lang, testimonials }: Props) {
   const text = pickText(section.data.content, lang);
-  const visible = testimonials.filter((t) => t.authorization_confirmed);
+  const visible = testimonials.filter((t) => t.visible);
   const slots = section.data.slots ?? [];
-  const videoSrc = slotUrl(slots[0]?.src);
   const videoPoster = slotUrl(slots[1]?.src);
 
   const items = visible.map((t) => ({
@@ -36,7 +35,7 @@ export function TestimoniosSection({ section, lang, testimonials }: Props) {
         </div>
 
         {items.length > 0 ? (
-          <TestimoniosClient items={items} videoSrc={videoSrc} videoPoster={videoPoster} lang={lang} />
+          <TestimoniosClient items={items} videoSrc="/videos/testimonio-reel.mov" videoPoster={videoPoster} lang={lang} />
         ) : (
           <p style={{ color: '#4B5F66', fontSize: '16px' }}>Los testimonios se mostrarán aquí una vez autorizados por los pacientes.</p>
         )}

@@ -21,9 +21,14 @@ function CardT1({ href, num, name, short, imgSrc }: { href: string; num: string;
   return (
     <Link href={href} className="card lnk t1" style={{ textDecoration: 'none', color: '#0A2730', display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <div style={{ flex: 1, minHeight: '520px', borderRadius: '28px 28px 999px 999px', overflow: 'hidden', position: 'relative' }}>
-        {imgSrc
-          ? <img src={imgSrc} alt={name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 30%', display: 'block' }} />
-          : <div className="ph" style={{ position: 'absolute', inset: 0 }} />}
+        <video
+          src="/videos/beard-treatment.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 30%', display: 'block' }}
+        />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingRight: '24px' }}>
         <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontSize: '24px', color: '#0196AD' }}>{num}</span>
@@ -82,17 +87,22 @@ function CardT3({ href, num, name, short, imgSrc }: { href: string; num: string;
 
 function CardT4({ href, num, name, short }: { href: string; num: string; name: string; short: string }) {
   return (
-    <Link href={href} className="lnk t4" style={{ textDecoration: 'none', color: '#FFFFFF', background: '#00566E', borderRadius: '28px', padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '32px', minHeight: '360px' }}>
-      <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#C5D300" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M3 11h5v3a4 4 0 0 0 8 0v-3h5"/>
-        <path d="M12 17c0-5 1.5-9 5.5-13"/>
-        <circle cx="12" cy="16.6" r="1.3" fill="#C5D300"/>
-      </svg>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <Link href={href} className="lnk t4" style={{ textDecoration: 'none', color: '#FFFFFF', borderRadius: '28px', overflow: 'hidden', display: 'flex', minHeight: '360px' }}>
+      {/* Imagen */}
+      <div style={{ flex: '0 0 42%', position: 'relative', minHeight: '360px' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/terapias-cirujano.jpg"
+          alt=""
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 25%', display: 'block' }}
+        />
+      </div>
+      {/* Texto */}
+      <div style={{ flex: 1, background: '#00566E', padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: '8px' }}>
         <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontSize: '22px', color: '#9BD3DC' }}>{num}</span>
         <strong style={{ fontSize: '24px', letterSpacing: '-0.015em', lineHeight: 1.15 }}>{name}</strong>
         <span style={{ fontSize: '15px', color: '#DCEBEE' }}>{short}</span>
-        <span className="lnk" style={{ fontWeight: 700, fontSize: '15px', color: '#C5D300', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+        <span className="lnk" style={{ fontWeight: 700, fontSize: '15px', color: '#C5D300', display: 'inline-flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
           Conoce el tratamiento<ArrowIcon />
         </span>
       </div>

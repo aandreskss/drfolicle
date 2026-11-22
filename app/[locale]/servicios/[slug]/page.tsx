@@ -188,10 +188,10 @@ export default async function TratamientoPage({
 
             {/* Right: hero image */}
             <div style={{ position: 'relative', height: 'clamp(440px,46vw,620px)' }}>
-              {heroImgUrl ? (
+              {(heroImgUrl || slug === 'terapias-capilares') ? (
                 <div className="card" style={{ position: 'absolute', right: 0, top: 0, width: '84%', height: '100%', borderRadius: '28px 28px 999px 999px / 28px 28px 330px 330px', overflow: 'hidden', background: '#E3F2F4' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={heroImgUrl} alt={treatmentName} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 30%', display: 'block' }} />
+                  <img src={heroImgUrl ?? '/images/terapias-cirujano.jpg'} alt={treatmentName} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 25%', display: 'block' }} />
                 </div>
               ) : (
                 <div className="dark" style={{ position: 'absolute', right: 0, top: 0, width: '84%', height: '100%', borderRadius: '28px 28px 999px 999px / 28px 28px 330px 330px', overflow: 'hidden', background: '#00566E', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -240,15 +240,40 @@ export default async function TratamientoPage({
       {fueSteps.length > 0 && (
         <section aria-labelledby="f-t" style={{ padding: 'clamp(72px,9vw,128px) 0' }}>
           <div className="wrap" style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: '24px' }}>
-              <h2 id="f-t" style={{ margin: 0, fontSize: 'clamp(34px,4.4vw,60px)', lineHeight: 1, letterSpacing: '-0.035em', fontWeight: 800, maxWidth: '760px', textWrap: 'balance' as never }}>
-                {fueText.t1 ?? (lang === 'en' ? 'How it' : 'Cómo')}{' '}
-                <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#0196AD' }}>{fueText.t2 ?? (lang === 'en' ? 'works.' : 'funciona.')}</span>
-              </h2>
-              {fueText.text && (
-                <p style={{ margin: 0, maxWidth: '380px', fontSize: '16px', color: '#4B5F66' }}>{fueText.text}</p>
-              )}
-            </div>
+            {slug === 'trasplante-capilar' ? (
+              <div className="g-two" style={{ display: 'grid', gap: 'clamp(32px,5vw,72px)', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                  <h2 id="f-t" style={{ margin: 0, fontSize: 'clamp(34px,4.4vw,60px)', lineHeight: 1, letterSpacing: '-0.035em', fontWeight: 800, textWrap: 'balance' as never }}>
+                    {fueText.t1 ?? 'Trasplante capilar con'}{' '}
+                    <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#0196AD' }}>{fueText.t2 ?? 'técnica FUE.'}</span>
+                  </h2>
+                  {fueText.text && (
+                    <p style={{ margin: 0, fontSize: 'clamp(17px,1.4vw,20px)', lineHeight: 1.6, color: '#24414A' }}>{fueText.text}</p>
+                  )}
+                </div>
+                <div style={{ position: 'relative', borderRadius: '28px', overflow: 'hidden', background: '#0A2730', aspectRatio: '9/16', maxHeight: '520px' }}>
+                  <video
+                    controls
+                    playsInline
+                    preload="none"
+                    aria-label="Video: ¿Cuándo crece el cabello después del trasplante?"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  >
+                    <source src="/videos/how-long-capilar.mp4" />
+                  </video>
+                </div>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: '24px' }}>
+                <h2 id="f-t" style={{ margin: 0, fontSize: 'clamp(34px,4.4vw,60px)', lineHeight: 1, letterSpacing: '-0.035em', fontWeight: 800, maxWidth: '760px', textWrap: 'balance' as never }}>
+                  {fueText.t1 ?? (lang === 'en' ? 'How it' : 'Cómo')}{' '}
+                  <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#0196AD' }}>{fueText.t2 ?? (lang === 'en' ? 'works.' : 'funciona.')}</span>
+                </h2>
+                {fueText.text && (
+                  <p style={{ margin: 0, maxWidth: '380px', fontSize: '16px', color: '#4B5F66' }}>{fueText.text}</p>
+                )}
+              </div>
+            )}
 
             <div className="g-three" style={{ display: 'grid', gap: '24px' }}>
               {fueSteps.map((step, i) => {

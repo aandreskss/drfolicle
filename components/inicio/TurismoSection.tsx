@@ -41,17 +41,17 @@ export function TurismoSection({ section, lang }: Props) {
             {text.t2 && <> <em className="accent">{text.t2}</em></>}
           </h2>
 
-          {/* Fotos de Medellín */}
+          {/* Video de Medellín */}
           <div style={{ position: 'relative', height: 'clamp(320px,36vw,500px)', marginTop: '16px' }}>
-            {/* Foto principal (carousel animado) */}
+            {/* YouTube Short embebido */}
             <div style={{ position: 'absolute', left: 0, top: 0, width: '78%', height: '88%', borderRadius: '28px 28px 999px 999px / 28px 28px 300px 300px', overflow: 'hidden', background: '#0C4A5E' }}>
-              {photos.length > 0 ? photos.map((p, i) => (
-                <div key={i} className="tour-s" role="img" aria-label={p.alt}>
-                  <img src={p.src!} alt={p.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '55% 50%', display: 'block' }} />
-                </div>
-              )) : (
-                <div className="ph-d" style={{ position: 'absolute', inset: 0 }} />
-              )}
+              <iframe
+                src="https://www.youtube.com/embed/X4N6CAHaYjc?rel=0&modestbranding=1"
+                title="Así vivirás tu tiempo en Medellín — Dr Follicle Solutions"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, display: 'block' }}
+              />
             </div>
 
             {/* Foto clínica (esquina inferior derecha) */}

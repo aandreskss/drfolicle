@@ -13,10 +13,11 @@ interface Props {
   items: TestimonialItem[];
   videoSrc?: string | null;
   videoPoster?: string | null;
+  youtubeId?: string;
   lang: string;
 }
 
-export function TestimoniosClient({ items, videoSrc, videoPoster, lang }: Props) {
+export function TestimoniosClient({ items, videoSrc, videoPoster, youtubeId, lang }: Props) {
   const [idx, setIdx] = useState(0);
   if (items.length === 0) return null;
 
@@ -47,7 +48,15 @@ export function TestimoniosClient({ items, videoSrc, videoPoster, lang }: Props)
 
         {/* Video (izquierda, 5fr) */}
         <figure style={{ margin: 0, position: 'relative', height: 'clamp(460px,44vw,620px)', borderRadius: '28px', overflow: 'hidden', background: '#0A2730' }}>
-          {videoSrc ? (
+          {youtubeId ? (
+            <iframe
+              src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
+              title="Paciente internacional cuenta su experiencia en Dr Follicle Solutions"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, display: 'block' }}
+            />
+          ) : videoSrc ? (
             <video
               controls
               playsInline

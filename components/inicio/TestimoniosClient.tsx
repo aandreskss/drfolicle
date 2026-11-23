@@ -63,7 +63,7 @@ export function TestimoniosClient({ items, videoSrc, videoPoster, youtubeId, lan
               controls
               playsInline
               poster={videoPoster ?? undefined}
-              aria-label="Video: paciente internacional cuenta por qué eligió Dr Follicle Solutions"
+              aria-label={lang === 'en' ? 'Video: international patient shares why they chose Dr Follicle Solutions' : 'Video: paciente internacional cuenta por qué eligió Dr Follicle Solutions'}
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
           ) : (

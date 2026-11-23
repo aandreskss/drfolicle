@@ -19,7 +19,7 @@ export function ConfianzaSection({ section, lang }: Props) {
   if (visible.length === 0) return null;
 
   return (
-    <section aria-label="Por qué confiar en nosotros" style={{ background: '#FFFFFF', borderTop: '1px solid #D5E3E6', borderBottom: '1px solid #D5E3E6' }}>
+    <section aria-label={lang === 'en' ? 'Why trust us' : 'Por qué confiar en nosotros'} style={{ background: '#FFFFFF', borderTop: '1px solid #D5E3E6', borderBottom: '1px solid #D5E3E6' }}>
       <div className="wrap g-trust" style={{ display: 'grid' }}>
         {visible.map((item, i) => {
           const d = pickItem(item, lang);

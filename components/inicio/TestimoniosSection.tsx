@@ -9,6 +9,13 @@ interface Props {
   testimonials: Testimonial[];
 }
 
+const TREATMENT_EN: Record<string, string> = {
+  'Trasplante capilar': 'Hair Transplant',
+  'Trasplante de barba': 'Beard Transplant',
+  'Trasplante de cejas': 'Eyebrow Transplant',
+  'Terapias de restauración capilar': 'Hair Restoration Therapies',
+};
+
 export function TestimoniosSection({ section, lang, testimonials }: Props) {
   const text = pickText(section.data.content, lang);
   const visible = testimonials.filter((t) => t.visible);
@@ -19,11 +26,14 @@ export function TestimoniosSection({ section, lang, testimonials }: Props) {
     id: t.id,
     quote: pick(t.quote, lang),
     author: t.author,
-    meta: [t.country, t.treatment].filter(Boolean).join(' · '),
+    meta: [
+      t.country,
+      lang === 'en' ? (TREATMENT_EN[t.treatment ?? ''] ?? t.treatment) : t.treatment,
+    ].filter(Boolean).join(' · '),
   }));
 
   return (
-    <section aria-labelledby="tes-t" aria-roledescription="carrusel" style={{ padding: 'clamp(72px,9vw,128px) 0' }}>
+    <section aria-labelledby="tes-t" aria-roledescription={lang === 'en' ? 'carousel' : 'carrusel'} style={{ padding: 'clamp(72px,9vw,128px) 0' }}>
       <div className="wrap" style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
 
         {/* Título */}
@@ -37,7 +47,7 @@ export function TestimoniosSection({ section, lang, testimonials }: Props) {
         {items.length > 0 ? (
           <TestimoniosClient items={items} videoSrc="/videos/testimonio-reel.mp4" videoPoster={videoPoster} lang={lang} />
         ) : (
-          <p style={{ color: '#4B5F66', fontSize: '16px' }}>Los testimonios se mostrarán aquí una vez autorizados por los pacientes.</p>
+          <p style={{ color: '#4B5F66', fontSize: '16px' }}>{lang === 'en' ? 'Testimonials will appear here once authorized by patients.' : 'Los testimonios se mostrarán aquí una vez autorizados por los pacientes.'}</p>
         )}
       </div>
     </section>

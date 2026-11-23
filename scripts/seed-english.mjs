@@ -615,6 +615,45 @@ async function updateListItem(pageSlug, sectionKey, listKey, esT, enData) {
   else console.log(`  ✓ ${enData.t}`);
 }
 
+// ─── List items — ConfianzaSection (inicio) ──────────────────────────────────
+const confianzaItems = [
+  ['Atención personalizada', { t: 'Personalized care', d: 'A plan for your case, not a standard package.' }],
+  ['Equipo médico especializado', { t: 'Specialized medical team', d: 'Dedicated exclusively to hair restoration.' }],
+  ['Tecnología de precisión', { t: 'Precision technology', d: 'FUE follicle-by-follicle extraction.' }],
+  ['Acompañamiento completo', { t: 'Complete support', d: 'Before, during, and after the procedure.' }],
+];
+
+// ─── List items — CienciaSection beneficios (inicio) ─────────────────────────
+const cienciaBeneficios = [
+  ['Anestesia local con bloqueos nerviosos', { t: 'Local anesthesia with nerve blocks', d: 'The least amount of anesthesia possible, for greater comfort.' }],
+  ['Sin cicatriz lineal', { t: 'No linear scar', d: 'Point extraction, follicle by follicle.' }],
+  ['Recuperación inicial de 7–10 días', { t: 'Initial recovery of 7–10 days', d: 'With clear instructions and follow-up.' }],
+  ['Diseño natural', { t: 'Natural design', d: 'Angle, direction, and density of your own hair.' }],
+];
+
+// ─── List items — CienciaSection pasos FUE (inicio) ──────────────────────────
+const cienciaPasos = [
+  ['Extracción', { t: 'Extraction', d: 'Follicular units are extracted one by one from the donor area, usually the nape, using micro-instruments.' }],
+  ['Preparación', { t: 'Preparation', d: 'The units are selected and preserved while the recipient area is designed according to your natural hairline.' }],
+  ['Implantación', { t: 'Implantation', d: 'Each unit is placed respecting the angle, direction, and density of your own hair.' }],
+];
+
+// ─── List items — ProcesoSection etapas (inicio) ─────────────────────────────
+const procesoEtapas = [
+  ['Valoración gratis', { t: 'Free assessment', d: 'We discuss your case by video call or at the clinic: your expectations, your history, and what you would like to change. The first assessment is free.', m: 'Free,In-clinic or virtual' }],
+  ['Diagnóstico capilar', { t: 'Hair diagnosis', d: 'We evaluate the cause of hair loss, the donor area, hair characteristics, and the current stage. The result: a clinical map of your case.' }],
+  ['Plan de tratamiento personalizado', { t: 'Personalized treatment plan', d: 'We present the design for your hairline, the number of grafts, the technique to use, and the estimated recovery timeline.' }],
+  ['Procedimiento', { t: 'Procedure', d: 'The day of your transplant: local anesthesia, extraction of follicles from the donor area, and implantation in the designed zones. Duration varies by case.' }],
+  ['Seguimiento y recuperación', { t: 'Follow-up and recovery', d: 'Post-operative instructions, follow-up consultations, and photographic tracking throughout your recovery until the final result.' }],
+];
+
+// ─── List items — ConsultaSection garantias (inicio) ─────────────────────────
+const consultaGarantias = [
+  ['Respuesta en horario de atención [confirmar tiempo]', { t: 'Response during business hours' }],
+  ['No te pediremos fotografías en este paso', { t: 'No photos needed at this stage' }],
+  ['Atención en español e inglés', { t: 'Care in English and Spanish' }],
+];
+
 // ─── List items — Turismo (inicio) ───────────────────────────────────────────
 const turismoItems = [
   ['Evaluación previa a distancia', { t: 'Prior remote assessment', d: 'Video call with the team before buying your flight.' }],
@@ -681,6 +720,31 @@ async function run() {
       if (err) console.error(`  ✗ "${f.qEs}":`, err.message);
       else console.log(`  ✓ ${f.qEn}`);
     }
+  }
+
+  console.log('\n── List items — Confianza ──');
+  for (const [esT, enData] of confianzaItems) {
+    await updateListItem('inicio', 'confianza', 'items', esT, enData);
+  }
+
+  console.log('\n── List items — Ciencia (beneficios) ──');
+  for (const [esT, enData] of cienciaBeneficios) {
+    await updateListItem('inicio', 'ciencia', 'beneficios', esT, enData);
+  }
+
+  console.log('\n── List items — Ciencia (pasos FUE) ──');
+  for (const [esT, enData] of cienciaPasos) {
+    await updateListItem('inicio', 'ciencia', 'pasos', esT, enData);
+  }
+
+  console.log('\n── List items — Proceso (etapas) ──');
+  for (const [esT, enData] of procesoEtapas) {
+    await updateListItem('inicio', 'proceso', 'etapas', esT, enData);
+  }
+
+  console.log('\n── List items — Consulta (garantias) ──');
+  for (const [esT, enData] of consultaGarantias) {
+    await updateListItem('inicio', 'consulta', 'garantias', esT, enData);
   }
 
   console.log('\n── List items — Turismo ──');

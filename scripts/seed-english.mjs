@@ -574,6 +574,58 @@ const testimonials = [
   },
 ];
 
+// ─── Utilidad: actualiza el campo EN de un list item dentro de una sección ───
+async function updateListItem(pageSlug, sectionKey, listKey, esT, enData) {
+  const { data, error } = await supabase
+    .from('page_sections')
+    .select('id, data_published')
+    .eq('page_slug', pageSlug)
+    .eq('key', sectionKey)
+    .single();
+
+  if (error || !data) {
+    console.warn(`  ⚠ No encontrada: [${pageSlug}] ${sectionKey}`);
+    return;
+  }
+
+  const list = data.data_published?.lists?.[listKey];
+  if (!list) {
+    console.warn(`  ⚠ Lista no encontrada: [${pageSlug}] ${sectionKey}.lists.${listKey}`);
+    return;
+  }
+
+  const updatedItems = list.items.map((item) =>
+    item.es?.t === esT ? { ...item, en: { ...item.en, ...enData } } : item
+  );
+
+  const updatedData = {
+    ...data.data_published,
+    lists: {
+      ...data.data_published.lists,
+      [listKey]: { ...list, items: updatedItems },
+    },
+  };
+
+  const { error: err } = await supabase
+    .from('page_sections')
+    .update({ data_draft: updatedData, data_published: updatedData })
+    .eq('id', data.id);
+
+  if (err) console.error(`  ✗ [${pageSlug}].${sectionKey}.${listKey}[${esT}]:`, err.message);
+  else console.log(`  ✓ ${enData.t}`);
+}
+
+// ─── List items — Turismo (inicio) ───────────────────────────────────────────
+const turismoItems = [
+  ['Evaluación previa a distancia', { t: 'Prior remote assessment', d: 'Video call with the team before buying your flight.' }],
+  ['Orientación para organizar el viaje', { t: 'Travel planning guidance', d: 'Recommended dates, documents, and suggested length of stay.' }],
+  ['Coordinación del procedimiento', { t: 'Procedure coordination', d: 'Pre-operative tests, medical consultation, and surgery on the same schedule.' }],
+  ['Alojamiento y traslados', { t: 'Accommodation and transfers', d: 'Airport pickup, hotel management, and personalized support throughout your stay.' }],
+  ['Tours por Medellín con nosotros', { t: 'Medellín tours with us', d: 'Plan city tours with our team for a premium, tailored medical tourism experience.' }],
+  ['Indicaciones postoperatorias', { t: 'Post-operative instructions', d: 'Post-op kit and care guide for the first days.' }],
+  ['Seguimiento desde tu país', { t: 'Remote follow-up', d: 'Remote check-ins while your new hair grows.' }],
+];
+
 // ─── Ejecución ────────────────────────────────────────────────────────────────
 async function run() {
   console.log('\n── Secciones de páginas ──');
@@ -629,6 +681,11 @@ async function run() {
       if (err) console.error(`  ✗ "${f.qEs}":`, err.message);
       else console.log(`  ✓ ${f.qEn}`);
     }
+  }
+
+  console.log('\n── List items — Turismo ──');
+  for (const [esT, enData] of turismoItems) {
+    await updateListItem('inicio', 'turismo', 'lista', esT, enData);
   }
 
   console.log('\n── Testimonios ──');

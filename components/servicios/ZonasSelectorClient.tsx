@@ -59,8 +59,8 @@ function ScalpSvg({ hl, zoneName, lang }: { hl: ReturnType<typeof computeHl>; zo
       <circle cx="150" cy="248" r="48" fill={hl.crown}/>
       <path d="M150 232 q14 6 10 18 q-6 12 -18 6" fill="none" stroke="#0A2730" strokeWidth="1.2" strokeLinecap="round" opacity="0.5"/>
       <path d="M150 60 Q150 182 150 322" stroke="#0A2730" strokeWidth="1" strokeDasharray="3 6" opacity="0.35"/>
-      <text x="150" y="22" textAnchor="middle" fontFamily="Manrope, sans-serif" fontSize="11" fontWeight="700" fill="#4B5F66" letterSpacing="1.5">FRENTE</text>
-      <text x="150" y="338" textAnchor="middle" fontFamily="Manrope, sans-serif" fontSize="11" fontWeight="700" fill="#4B5F66" letterSpacing="1.5">NUCA · ZONA DONANTE</text>
+      <text x="150" y="22" textAnchor="middle" fontFamily="Manrope, sans-serif" fontSize="11" fontWeight="700" fill="#4B5F66" letterSpacing="1.5">{lang === 'en' ? 'FRONT' : 'FRENTE'}</text>
+      <text x="150" y="338" textAnchor="middle" fontFamily="Manrope, sans-serif" fontSize="11" fontWeight="700" fill="#4B5F66" letterSpacing="1.5">{lang === 'en' ? 'NAPE · DONOR AREA' : 'NUCA · ZONA DONANTE'}</text>
     </svg>
   );
 }
@@ -84,7 +84,7 @@ function FaceSvg({ hl, zoneName, lang }: { hl: ReturnType<typeof computeHl>; zon
       <path d="M150 150 L 142 196 Q 150 202 158 196" fill="none" stroke="#0A2730" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
       <path d="M128 254 Q150 262 172 254" fill="none" stroke="#0A2730" strokeWidth="1.5" strokeLinecap="round"/>
       <path d="M214 272 l 16 -12" stroke={hl.scar} strokeWidth="4" strokeLinecap="round"/>
-      <text x="150" y="16" textAnchor="middle" fontFamily="Manrope, sans-serif" fontSize="11" fontWeight="700" fill="#4B5F66" letterSpacing="1.5">ZONA RECEPTORA</text>
+      <text x="150" y="16" textAnchor="middle" fontFamily="Manrope, sans-serif" fontSize="11" fontWeight="700" fill="#4B5F66" letterSpacing="1.5">{lang === 'en' ? 'RECIPIENT AREA' : 'ZONA RECEPTORA'}</text>
     </svg>
   );
 }

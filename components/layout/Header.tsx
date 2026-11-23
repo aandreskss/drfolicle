@@ -16,19 +16,40 @@ interface ButtonsSettings {
   cta: string;
 }
 
+const EN_NAV_LABELS: Record<string, string> = {
+  '/': 'Home',
+  '/servicios': 'Services',
+  '/turismo-medico': 'Medical tourism',
+  '/resultados': 'Results',
+  '/blog': 'Blog',
+  '/contacto': 'Contact',
+};
+
 export async function Header() {
-  const [navItems, treatments, buttons, t] = await Promise.all([
+  const [navItems, treatments, buttons, t, tSite, locale] = await Promise.all([
     getSettings<NavItem[]>('nav_main'),
     getTreatments(),
     getSettings<ButtonsSettings>('buttons'),
     getTranslations('nav'),
+    getTranslations('site'),
+    getLocale(),
   ]);
+
+  const enrichedNavItems = (navItems ?? []).map((item) => ({
+    ...item,
+    label: {
+      ...item.label,
+      en: item.label.en || EN_NAV_LABELS[item.href] || item.label.es,
+    },
+  }));
+
+  const ctaLabel = locale === 'en' ? tSite('cta') : (buttons?.cta ?? 'Valoración gratis');
 
   return (
     <HeaderInner
-      navItems={navItems ?? []}
+      navItems={enrichedNavItems}
       treatments={treatments}
-      ctaLabel={buttons?.cta ?? 'Valoración gratis'}
+      ctaLabel={ctaLabel}
       labelOpenMenu={t('openMenu')}
       labelCloseMenu={t('closeMenu')}
       labelLang={t('lang')}

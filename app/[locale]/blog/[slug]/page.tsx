@@ -129,7 +129,7 @@ export default async function ArticlePage({
           {/* Footer CTA */}
           <div className="mt-14 rounded-[var(--radius-card)] bg-dark p-8 text-center">
             <p className="text-xl font-extrabold text-white mb-2">
-              {lang === 'en' ? '¿Ready to take the first step?' : '¿Listo para dar el primer paso?'}
+              {lang === 'en' ? 'Ready to take the first step?' : '¿Listo para dar el primer paso?'}
             </p>
             <p className="text-[#BFD6DB] mb-6 text-sm">
               {lang === 'en' ? 'Request your free assessment.' : 'Solicita tu valoración gratuita.'}

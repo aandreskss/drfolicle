@@ -77,11 +77,14 @@ export async function Footer() {
   const footerTreatments = treatments.filter((tr) => tr.show_footer);
   const activeSocial = (social ?? []).filter((s) => s.on);
 
+  const EN_DESC = 'Hair restoration clinic in Medellín, Colombia. Hair, beard, and eyebrow transplants for national and international patients.';
+  const ES_DESC = 'Clínica de restauración capilar en Medellín, Colombia. Trasplante capilar, de barba y de cejas para pacientes nacionales e internacionales.';
+
   const desc = footer?.desc
-    ? typeof footer.desc === 'string' ? footer.desc : (footer.desc[lang] || footer.desc.es)
-    : (lang === 'en'
-      ? 'Hair restoration clinic in Medellín, Colombia. Hair, beard, and eyebrow transplants for national and international patients.'
-      : 'Clínica de restauración capilar en Medellín, Colombia. Trasplante capilar, de barba y de cejas para pacientes nacionales e internacionales.');
+    ? typeof footer.desc === 'string'
+      ? (lang === 'en' ? EN_DESC : footer.desc)
+      : (footer.desc[lang] || footer.desc.es)
+    : (lang === 'en' ? EN_DESC : ES_DESC);
 
   const waNumber = contact?.wa ?? contact?.phone ?? '19548535335';
   const waClean = waNumber.replace(/\D/g, '');

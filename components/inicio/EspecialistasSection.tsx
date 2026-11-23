@@ -28,7 +28,7 @@ export function EspecialistasSection({ section, lang, team, mediaMap }: Props) {
             <div className="ph" style={{ position: 'absolute', inset: 0 }} />
           )}
           <span style={{ position: 'absolute', left: '20px', top: '20px', background: 'rgba(10,39,48,0.78)', color: '#FFFFFF', fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '6px 10px', borderRadius: '999px' }}>
-            En consulta · Medellín
+            {lang === 'en' ? 'In consultation · Medellín' : 'En consulta · Medellín'}
           </span>
         </div>
 

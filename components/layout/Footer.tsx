@@ -198,12 +198,9 @@ export async function Footer() {
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '16px', borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '24px', fontSize: '13px', color: '#BFD6DB' }}>
           <span>{legalText}</span>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-            <a href="https://drfolliclesolutions.com/privacidad-seguridad-y-condiciones/" style={{ color: '#BFD6DB', textDecoration: 'none' }}>
-              {lang === 'en' ? 'Privacy, security and terms' : 'Privacidad, seguridad y condiciones'}
-            </a>
-            <a href="https://drfolliclesolutions.com/privacidad-seguridad-y-condiciones/" style={{ color: '#BFD6DB', textDecoration: 'none' }}>
-              {lang === 'en' ? 'Data processing' : 'Tratamiento de datos'}
-            </a>
+            <Link href="/privacidad" style={{ color: '#BFD6DB', textDecoration: 'none' }}>
+              {lang === 'en' ? 'Privacy, security & terms' : 'Privacidad, seguridad y condiciones'}
+            </Link>
           </div>
         </div>
 

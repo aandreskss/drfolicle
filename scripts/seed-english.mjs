@@ -536,6 +536,23 @@ const faqs = [
     qEn: 'Do I need surgery?',
     aEn: 'No. It is a non-surgical therapy.',
   },
+  // general / inicio (pendientes anteriores)
+  {
+    qEs: '¿Qué diferencia existe entre las técnicas disponibles?',
+    qEn: 'What is the difference between the available techniques?',
+    aEn: 'At our clinic we primarily use the FUE (Follicular Unit Extraction) technique, which minimizes scarring and allows for natural-looking results with no linear scar. During your free assessment, the specialist will explain which approach is best suited for your specific case.',
+  },
+  {
+    qEs: '¿Cuántas sesiones necesito?',
+    qEn: 'How many sessions do I need?',
+    aEn: 'For hair restoration therapies (PRP), the number of sessions is determined at the assessment based on the stage of hair loss and your response to treatment. For a surgical transplant, a single procedure is usually sufficient.',
+  },
+  // turismo-medico
+  {
+    qEs: '¿Cuántos días debo quedarme en Medellín?',
+    qEn: 'How many days should I stay in Medellín?',
+    aEn: 'We recommend staying at least 7 to 10 days: the day of the procedure, the first days of recovery, and the initial follow-up visit. Our team will help you plan the ideal schedule.',
+  },
   // turismo-medico
   {
     qEs: '¿Puedo hacer la valoración sin viajar?',
@@ -774,10 +791,8 @@ async function run() {
   console.log('\n✅ Listo.\n');
   console.log('⚠️  Pendientes (necesitan info de la clínica):');
   console.log('  - [contacto] mapa: dirección, horario y enlace de Google Maps');
-  console.log('  - FAQ "¿Qué diferencia existe entre las técnicas disponibles?": respuesta pendiente');
-  console.log('  - FAQ "¿Cuántas sesiones necesito?": respuesta pendiente');
-  console.log('  - FAQ "¿Cuántos días debo quedarme en Medellín?": días exactos pendientes');
-  console.log('  - Testimonios: [País] → actualizar con países reales');
+  console.log('  - Testimonios: [País] → actualizar con país real de cada paciente');
+  console.log('  - Footer: [Dirección verificada] y [Horario de atención] → datos reales');
 }
 
 run().catch(console.error);

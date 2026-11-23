@@ -125,7 +125,7 @@ export function mediaUrl(path: string): string {
 }
 
 /** Mapa de id → URL para todos los archivos de media. */
-export const getAllMedia = unstable_cache(
+export const getAllMedia = cache(
   async (): Promise<Record<string, string>> => {
     const { data, error } = await anonClient()
       .from('media')
@@ -135,9 +135,7 @@ export const getAllMedia = unstable_cache(
     return Object.fromEntries(
       ((data ?? []) as Row[]).map((m) => [m.id, mediaUrl(m.path)])
     );
-  },
-  ['media-map-v2'],
-  { tags: ['site'], revalidate: 3600 }
+  }
 );
 
 /** Convierte un src de slot (ruta relativa o URL) a URL usable en <img>. */

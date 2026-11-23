@@ -19,10 +19,12 @@ interface ButtonsSettings {
 const EN_NAV_LABELS: Record<string, string> = {
   '/': 'Home',
   '/servicios': 'Services',
+  '/nuestro-metodo': 'Our method',
   '/turismo-medico': 'Medical tourism',
   '/resultados': 'Results',
   '/blog': 'Blog',
   '/contacto': 'Contact',
+  '/nosotros': 'About us',
 };
 
 export async function Header() {

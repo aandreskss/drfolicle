@@ -7,10 +7,12 @@ import type { Lang } from '@/lib/content/types';
 import { pickText, pickItem } from '@/lib/content/types';
 import { Link } from '@/i18n/navigation';
 
-export const metadata: Metadata = {
-  title: 'Contacto y valoración',
-  description: 'Solicita tu valoración gratuita de restauración capilar con Dr Follicle Solutions en Medellín.',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return locale === 'en'
+    ? { title: 'Contact & Free Assessment', description: 'Request your free hair restoration assessment with Dr Follicle Solutions in Medellín. Book via WhatsApp, video call or email.' }
+    : { title: 'Contacto y valoración', description: 'Solicita tu valoración gratuita de restauración capilar con Dr Follicle Solutions en Medellín.' };
+}
 
 interface ContactSettings {
   phone: string;

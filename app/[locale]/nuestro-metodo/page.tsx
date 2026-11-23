@@ -8,10 +8,12 @@ import { Accordion } from '@/components/ui/Accordion';
 import type { Lang } from '@/lib/content/types';
 import { pickText, pickItem } from '@/lib/content/types';
 
-export const metadata: Metadata = {
-  title: 'Nuestro método · Técnica FUE | Dr Follicle Solutions',
-  description: 'Consulta gratuita, plan personalizado, técnica FUE y seguimiento completo: así trabajamos en Dr Follicle Solutions para garantizar resultados naturales.',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return locale === 'en'
+    ? { title: 'Our Method · FUE Technique | Dr Follicle Solutions', description: 'Free consultation, personalized plan, FUE technique and full follow-up: how we work at Dr Follicle Solutions to deliver natural results.' }
+    : { title: 'Nuestro método · Técnica FUE | Dr Follicle Solutions', description: 'Consulta gratuita, plan personalizado, técnica FUE y seguimiento completo: así trabajamos en Dr Follicle Solutions para garantizar resultados naturales.' };
+}
 
 /* ─── Tokens ─── */
 const INK = '#0A2730';

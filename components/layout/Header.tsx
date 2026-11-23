@@ -32,6 +32,8 @@ export async function Header() {
       labelOpenMenu={t('openMenu')}
       labelCloseMenu={t('closeMenu')}
       labelLang={t('lang')}
+      labelSkip={t('skipToContent')}
+      labelViewAll={t('viewAllServices')}
     />
   );
 }

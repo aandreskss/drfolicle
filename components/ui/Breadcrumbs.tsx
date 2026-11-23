@@ -10,7 +10,7 @@ interface BreadcrumbsProps {
   homeLabel?: string;
 }
 
-export function Breadcrumbs({ crumbs, homeLabel = 'Inicio' }: BreadcrumbsProps) {
+export function Breadcrumbs({ crumbs, homeLabel = 'Home' }: BreadcrumbsProps) {
   const all: Crumb[] = [{ label: homeLabel, href: '/' }, ...crumbs];
 
   const jsonLd = {
@@ -30,7 +30,7 @@ export function Breadcrumbs({ crumbs, homeLabel = 'Inicio' }: BreadcrumbsProps) 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <nav aria-label="Migas de pan">
+      <nav aria-label="Breadcrumb">
         <ol className="flex flex-wrap items-center gap-1.5 text-sm text-slate">
           {all.map((crumb, i) => {
             const isLast = i === all.length - 1;

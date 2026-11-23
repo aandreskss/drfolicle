@@ -29,6 +29,8 @@ interface HeaderInnerProps {
   labelOpenMenu: string;
   labelCloseMenu: string;
   labelLang: string;
+  labelSkip: string;
+  labelViewAll: string;
 }
 
 export function HeaderInner({
@@ -38,6 +40,8 @@ export function HeaderInner({
   labelOpenMenu,
   labelCloseMenu,
   labelLang,
+  labelSkip,
+  labelViewAll,
 }: HeaderInnerProps) {
   const locale = useLocale() as 'es' | 'en';
   const pathname = usePathname();
@@ -79,7 +83,7 @@ export function HeaderInner({
         href="#main-content"
         className="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-4 focus-visible:z-50 focus-visible:rounded-[10px] focus-visible:bg-teal focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-bold focus-visible:text-white"
       >
-        {labelOpenMenu === 'Abrir menú' ? 'Ir al contenido principal' : 'Skip to main content'}
+        {labelSkip}
       </a>
 
       <header
@@ -154,7 +158,7 @@ export function HeaderInner({
                           onClick={() => setDropdownOpen(false)}
                           className="text-sm font-semibold text-teal-deep hover:underline"
                         >
-                          Ver todos los servicios →
+                          {labelViewAll}
                         </Link>
                       </div>
                     </div>

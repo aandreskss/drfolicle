@@ -47,7 +47,7 @@ export function TurismoSection({ section, lang }: Props) {
             <div style={{ position: 'absolute', left: 0, top: 0, width: '78%', height: '88%', borderRadius: '28px 28px 999px 999px / 28px 28px 300px 300px', overflow: 'hidden', background: '#0C4A5E' }}>
               <iframe
                 src="https://www.youtube.com/embed/X4N6CAHaYjc?rel=0&modestbranding=1"
-                title="Así vivirás tu tiempo en Medellín — Dr Follicle Solutions"
+                title={lang === 'en' ? 'Your time in Medellín — Dr Follicle Solutions' : 'Así vivirás tu tiempo en Medellín — Dr Follicle Solutions'}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, display: 'block' }}
@@ -57,7 +57,7 @@ export function TurismoSection({ section, lang }: Props) {
             {/* Foto clínica (esquina inferior derecha) */}
             {clinicPhoto && (
               <div style={{ position: 'absolute', right: 0, bottom: 0, width: '44%', height: '58%', borderRadius: '24px', overflow: 'hidden', border: '6px solid #00566E' }}>
-                <img src={clinicPhoto} alt="Paciente durante el diseño de su línea frontal en la clínica" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 40%', display: 'block' }} />
+                <img src={clinicPhoto} alt={lang === 'en' ? 'Patient during their hairline design at the clinic' : 'Paciente durante el diseño de su línea frontal en la clínica'} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 40%', display: 'block' }} />
               </div>
             )}
           </div>

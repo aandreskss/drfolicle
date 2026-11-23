@@ -63,14 +63,14 @@ export function CienciaSection({ section, lang }: Props) {
                   src="/videos/does-it-hurt.mp4"
                   controls
                   playsInline
-                  aria-label="Video: paciente cuenta cómo es el procedimiento"
+                  aria-label={lang === 'en' ? 'Video: patient shares what the procedure is like' : 'Video: paciente cuenta cómo es el procedimiento'}
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>Lo cuentan nuestros pacientes</span>
-                <strong style={{ fontSize: '24px', letterSpacing: '-0.02em' }}>No duele.</strong>
-                <span style={{ fontSize: '15px', color: '#4B5F66' }}>Escucha a un paciente contar cómo vive el procedimiento.</span>
+                <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>{lang === 'en' ? 'Our patients tell it' : 'Lo cuentan nuestros pacientes'}</span>
+                <strong style={{ fontSize: '24px', letterSpacing: '-0.02em' }}>{lang === 'en' ? "It doesn't hurt." : 'No duele.'}</strong>
+                <span style={{ fontSize: '15px', color: '#4B5F66' }}>{lang === 'en' ? 'Listen to a patient share what the procedure is like.' : 'Escucha a un paciente contar cómo vive el procedimiento.'}</span>
               </div>
             </div>
           </div>
@@ -78,12 +78,12 @@ export function CienciaSection({ section, lang }: Props) {
           {/* ── Columna derecha: técnica FUE ── */}
           <div style={{ background: '#FFFFFF', borderRadius: '28px', padding: 'clamp(24px,3vw,40px)', display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '16px' }}>
-              <strong style={{ fontSize: '20px' }}>Cómo funciona la técnica FUE</strong>
-              <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#4B5F66' }}>El proceso paso a paso</span>
+              <strong style={{ fontSize: '20px' }}>{lang === 'en' ? 'How the FUE technique works' : 'Cómo funciona la técnica FUE'}</strong>
+              <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#4B5F66' }}>{lang === 'en' ? 'The process step by step' : 'El proceso paso a paso'}</span>
             </div>
 
             {/* SVG diagrama */}
-            <svg viewBox="0 0 520 360" width="100%" role="img" aria-label="Ilustración: extracción de unidades foliculares en la zona donante e implantación en la zona receptora" style={{ display: 'block' }}>
+            <svg viewBox="0 0 520 360" width="100%" role="img" aria-label={lang === 'en' ? 'Illustration: follicular unit extraction from donor zone and implantation in recipient zone' : 'Ilustración: extracción de unidades foliculares en la zona donante e implantación en la zona receptora'} style={{ display: 'block' }}>
               <rect x="0" y="170" width="520" height="26" fill="#E3F2F4"/>
               <path d="M0 170H520" stroke="#0A2730" strokeWidth="1.5"/>
               <path d="M42 250V285A18 18 0 0 0 78 285V250" stroke="#0196AD" strokeWidth="1.5" fill="none" strokeDasharray="4 4"/>
@@ -101,8 +101,8 @@ export function CienciaSection({ section, lang }: Props) {
               <circle cx="460" cy="290" r="9" fill="#C5D300" stroke="#0A2730" strokeWidth="1.5"/>
               <path d="M60 60C160 6 360 6 456 54" stroke="#007A8C" strokeWidth="1.5" fill="none" strokeDasharray="6 6"/>
               <path d="M444 40L458 56L438 62" stroke="#007A8C" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-              <text x="20" y="345" fontFamily="Manrope, sans-serif" fontSize="13" fontWeight="700" fill="#4B5F66">ZONA DONANTE</text>
-              <text x="368" y="345" fontFamily="Manrope, sans-serif" fontSize="13" fontWeight="700" fill="#4B5F66">ZONA RECEPTORA</text>
+              <text x="20" y="345" fontFamily="Manrope, sans-serif" fontSize="13" fontWeight="700" fill="#4B5F66">{lang === 'en' ? 'DONOR ZONE' : 'ZONA DONANTE'}</text>
+              <text x="338" y="345" fontFamily="Manrope, sans-serif" fontSize="13" fontWeight="700" fill="#4B5F66">{lang === 'en' ? 'RECIPIENT ZONE' : 'ZONA RECEPTORA'}</text>
             </svg>
 
             {/* Pasos listados */}

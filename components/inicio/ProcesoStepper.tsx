@@ -13,9 +13,12 @@ export interface ProcesoStep {
 interface Props {
   steps: ProcesoStep[];
   stepLabel: string;
+  stepOf: string;
+  labelNext: string;
+  labelRequest: string;
 }
 
-export function ProcesoStepper({ steps, stepLabel }: Props) {
+export function ProcesoStepper({ steps, stepLabel, stepOf, labelNext, labelRequest }: Props) {
   const [active, setActive] = useState(0);
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -143,7 +146,7 @@ export function ProcesoStepper({ steps, stepLabel }: Props) {
         {/* Contenido */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '8px clamp(8px,2vw,32px) 8px 0' }}>
           <span style={{ fontSize: '12px', letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>
-            {stepLabel} {active + 1} de {steps.length}
+            {stepLabel} {active + 1} {stepOf} {steps.length}
           </span>
           <strong style={{ fontSize: 'clamp(26px,2.6vw,36px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>{step?.t}</strong>
           <p style={{ margin: 0, fontSize: '17px', color: '#24414A' }}>{step?.d}</p>
@@ -162,7 +165,7 @@ export function ProcesoStepper({ steps, stepLabel }: Props) {
             onClick={goNext}
             style={{ alignSelf: 'flex-start', marginTop: '8px', height: '52px', padding: '0 22px', border: 0, borderRadius: '14px', background: '#007A8C', color: '#FFFFFF', font: '700 15px Manrope, sans-serif', display: 'inline-flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
           >
-            {active < steps.length - 1 ? 'Siguiente etapa' : 'Solicitar valoración'}
+            {active < steps.length - 1 ? labelNext : labelRequest}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"/>
             </svg>

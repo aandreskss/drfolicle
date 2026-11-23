@@ -144,7 +144,10 @@ export function HeroSection({ section, lang }: Props) {
             fontSize: '14px',
             color: '#4B5F66',
           }}>
-            {(['Primera valoración sin costo', 'Atención en español e inglés', 'Pacientes de Colombia y del exterior'] as const).map((item) => (
+            {(lang === 'en'
+              ? ['Free first assessment', 'Care in English and Spanish', 'Patients from Colombia and abroad']
+              : ['Primera valoración sin costo', 'Atención en español e inglés', 'Pacientes de Colombia y del exterior']
+            ).map((item) => (
               <span key={item} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0196AD', flexShrink: 0 }} />
                 {item}
@@ -194,7 +197,7 @@ export function HeroSection({ section, lang }: Props) {
               boxShadow: '0 10px 24px rgba(10,39,48,0.18)',
             }}>
               <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, fontSize: '17px', letterSpacing: 0, textTransform: 'none' }}>03</span>
-              Resultado
+              {lang === 'en' ? 'Result' : 'Resultado'}
             </span>
           </div>
 
@@ -240,7 +243,7 @@ export function HeroSection({ section, lang }: Props) {
               boxShadow: '0 8px 20px rgba(10,39,48,0.14)',
             }}>
               <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, fontSize: '15px', letterSpacing: 0, textTransform: 'none', color: '#0196AD' }}>01</span>
-              Procedimiento
+              {lang === 'en' ? 'Procedure' : 'Procedimiento'}
             </span>
           </div>
 
@@ -281,7 +284,7 @@ export function HeroSection({ section, lang }: Props) {
               boxShadow: '0 8px 20px rgba(10,39,48,0.14)',
             }}>
               <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, fontSize: '15px', letterSpacing: 0, textTransform: 'none', color: '#0196AD' }}>02</span>
-              Crecimiento
+              {lang === 'en' ? 'Growth' : 'Crecimiento'}
             </span>
           </div>
 
@@ -300,8 +303,8 @@ export function HeroSection({ section, lang }: Props) {
             gap: '4px',
             boxShadow: '0 20px 40px rgba(10,39,48,0.22)',
           }}>
-            <strong style={{ fontSize: '14px' }}>Caso real · Dr Follicle Solutions</strong>
-            <span style={{ fontSize: '13px', lineHeight: 1.45, color: '#BFD6DB' }}>Resultados reales de pacientes. Los resultados varían según cada paciente.</span>
+            <strong style={{ fontSize: '14px' }}>{lang === 'en' ? 'Real case · Dr Follicle Solutions' : 'Caso real · Dr Follicle Solutions'}</strong>
+            <span style={{ fontSize: '13px', lineHeight: 1.45, color: '#BFD6DB' }}>{lang === 'en' ? 'Real patient results. Results may vary per patient.' : 'Resultados reales de pacientes. Los resultados varían según cada paciente.'}</span>
           </div>
 
           {/* Punto decorativo lima */}

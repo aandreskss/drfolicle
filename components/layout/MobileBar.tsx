@@ -1,3 +1,4 @@
+import { getLocale } from 'next-intl/server';
 import { getSettings } from '@/lib/content/settings';
 
 interface ButtonsSettings {
@@ -17,9 +18,10 @@ function waUrl(phone: string, msg: string) {
 }
 
 export async function MobileBar() {
-  const [buttons, contact] = await Promise.all([
+  const [buttons, contact, locale] = await Promise.all([
     getSettings<ButtonsSettings>('buttons'),
     getSettings<ContactSettings>('contact'),
+    getLocale(),
   ]);
 
   if (!buttons?.barOn) return null;
@@ -45,7 +47,7 @@ export async function MobileBar() {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Escribir por WhatsApp"
+          aria-label={locale === 'en' ? 'Write on WhatsApp' : 'Escribir por WhatsApp'}
           className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[14px] bg-dark text-lime shadow-[0_10px_24px_rgba(10,39,48,0.2)] hover:bg-dark-2 transition-colors duration-[180ms] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_#0A2730,0_0_0_6px_#C5D300]"
         >
           <svg

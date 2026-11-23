@@ -7,7 +7,8 @@
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
     "lang": "Idioma",
-    "skipToContent": "Ir al contenido principal"
+    "skipToContent": "Ir al contenido principal",
+    "viewAllServices": "Ver todos los servicios →"
   },
   "footer": {
     "services": "Servicios",
@@ -25,6 +26,9 @@
     "readMore": "Leer más",
     "viewMore": "Ver más",
     "viewLess": "Ver menos",
-    "step": "Etapa"
+    "step": "Etapa",
+    "nextStep": "Siguiente etapa",
+    "requestAssessment": "Solicitar valoración",
+    "stepOf": "de"
   }
 }

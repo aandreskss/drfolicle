@@ -5,34 +5,26 @@ interface Props {
   lang: Lang;
 }
 
-const ITEMS = [
-  {
-    title: 'Valoración sin costo',
-    desc: 'Primera consulta gratis, en clínica o por videollamada. Sin compromiso.',
-  },
-  {
-    title: 'Técnica FUE especializada',
-    desc: 'Sin cicatriz lineal. Extracción folículo a folículo con diseño de línea frontal personalizado.',
-  },
-  {
-    title: 'Atención bilingüe',
-    desc: 'Hablamos español e inglés para atender a pacientes nacionales e internacionales.',
-  },
-  {
-    title: 'Seguimiento post-operatorio',
-    desc: 'Protocolo de cuidados, consultas de seguimiento y acompañamiento fotográfico incluidos.',
-  },
-  {
-    title: 'Turismo médico',
-    desc: 'Coordinamos la logística del viaje a Medellín para pacientes que vienen desde el exterior.',
-  },
-  {
-    title: 'Resultados documentados',
-    desc: 'Solo publicamos casos reales con autorización expresa del paciente. Sin edición.',
-  },
+const ITEMS_ES = [
+  { title: 'Valoración sin costo', desc: 'Primera consulta gratis, en clínica o por videollamada. Sin compromiso.' },
+  { title: 'Técnica FUE especializada', desc: 'Sin cicatriz lineal. Extracción folículo a folículo con diseño de línea frontal personalizado.' },
+  { title: 'Atención bilingüe', desc: 'Hablamos español e inglés para atender a pacientes nacionales e internacionales.' },
+  { title: 'Seguimiento post-operatorio', desc: 'Protocolo de cuidados, consultas de seguimiento y acompañamiento fotográfico incluidos.' },
+  { title: 'Turismo médico', desc: 'Coordinamos la logística del viaje a Medellín para pacientes que vienen desde el exterior.' },
+  { title: 'Resultados documentados', desc: 'Solo publicamos casos reales con autorización expresa del paciente. Sin edición.' },
 ];
 
-export function GarantiasSection({ lang: _ }: Props) {
+const ITEMS_EN = [
+  { title: 'Free assessment', desc: 'First consultation at no cost, in clinic or by video call. No commitment.' },
+  { title: 'Specialized FUE technique', desc: 'No linear scar. Follicle-by-follicle extraction with a custom hairline design.' },
+  { title: 'Bilingual care', desc: 'We speak Spanish and English to serve national and international patients.' },
+  { title: 'Post-operative follow-up', desc: 'Care protocol, follow-up consultations, and photographic tracking included.' },
+  { title: 'Medical tourism', desc: 'We coordinate the full trip logistics to Medellín for patients coming from abroad.' },
+  { title: 'Documented results', desc: 'We only publish real cases with the patient\'s explicit authorization. No editing.' },
+];
+
+export function GarantiasSection({ lang }: Props) {
+  const items = lang === 'en' ? ITEMS_EN : ITEMS_ES;
   return (
     <section aria-labelledby="gar-t" style={{ padding: 'clamp(72px,9vw,128px) 0' }}>
       <div className="wrap g-spec" style={{ display: 'grid', gap: 'clamp(32px,5vw,80px)', alignItems: 'start' }}>
@@ -44,15 +36,15 @@ export function GarantiasSection({ lang: _ }: Props) {
               src="/videos/when-does-it-grow.mp4"
               controls
               playsInline
-              aria-label="Video: ¿cuándo vuelve a crecer el cabello?"
+              aria-label={lang === 'en' ? 'Video: when does hair grow back after the transplant?' : 'Video: ¿cuándo vuelve a crecer el cabello?'}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
           </div>
           <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '4px', paddingLeft: '4px' }}>
             <span style={{ fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>
-              Lo cuentan nuestros pacientes
+              {lang === 'en' ? 'Our patients tell it' : 'Lo cuentan nuestros pacientes'}
             </span>
-            <strong style={{ fontSize: '18px', letterSpacing: '-0.01em' }}>¿Cuándo vuelve a crecer?</strong>
+            <strong style={{ fontSize: '18px', letterSpacing: '-0.01em' }}>{lang === 'en' ? 'When does it grow back?' : '¿Cuándo vuelve a crecer?'}</strong>
           </div>
         </div>
 
@@ -61,19 +53,20 @@ export function GarantiasSection({ lang: _ }: Props) {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <span style={{ fontSize: '12px', letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>
-              Por qué Dr Follicle Solutions
+              {lang === 'en' ? 'Why Dr Follicle Solutions' : 'Por qué Dr Follicle Solutions'}
             </span>
             <h2 id="gar-t" style={{ margin: 0, fontSize: 'clamp(34px,4vw,56px)', lineHeight: 1, letterSpacing: '-0.035em', fontWeight: 800 }}>
-              Comprometidos{' '}
-              <em className="accent">con tu resultado.</em>
+              {lang === 'en' ? <>Committed{' '}<em className="accent">to your result.</em></> : <>Comprometidos{' '}<em className="accent">con tu resultado.</em></>}
             </h2>
             <p style={{ margin: 0, fontSize: '17px', color: '#24414A', maxWidth: '460px' }}>
-              Cada decisión en Dr Follicle Solutions está tomada pensando en tu experiencia y en el resultado que mereces.
+              {lang === 'en'
+                ? 'Every decision at Dr Follicle Solutions is made with your experience and the result you deserve in mind.'
+                : 'Cada decisión en Dr Follicle Solutions está tomada pensando en tu experiencia y en el resultado que mereces.'}
             </p>
           </div>
 
           <div className="g-two" style={{ display: 'grid', gap: '24px' }}>
-            {ITEMS.map((item, i) => (
+            {items.map((item, i) => (
               <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '20px', background: '#FFFFFF', borderRadius: '20px', border: '1px solid #D5E3E6' }}>
                 <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontSize: '20px', color: '#0196AD', lineHeight: 1 }}>
                   0{i + 1}

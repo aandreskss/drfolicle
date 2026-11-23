@@ -22,13 +22,13 @@ export function CtaSection({ section, lang }: Props) {
             href={text.ctaLink ?? '/contacto'}
             className="btn inline-flex h-14 items-center rounded-[14px] bg-lime px-8 text-base font-bold text-dark hover:bg-lime-hover transition-colors duration-[180ms] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_#0A2730,0_0_0_6px_#C5D300]"
           >
-            {text.cta ?? 'Valoración gratis'}
+            {text.cta ?? (lang === 'en' ? 'Free assessment' : 'Valoración gratis')}
           </Link>
           <a
-            href="https://wa.me/19548535335?text=Hola%2C%20quiero%20agendar%20una%20valoraci%C3%B3n."
+            href={lang === 'en' ? 'https://wa.me/19548535335?text=Hello%2C%20I%27d%20like%20to%20schedule%20an%20assessment.' : 'https://wa.me/19548535335?text=Hola%2C%20quiero%20agendar%20una%20valoraci%C3%B3n.'}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn inline-flex h-14 items-center gap-2.5 rounded-[14px] border border-white/20 px-7 text-base font-bold text-white hover:border-white/40 hover:bg-white/10 transition-all duration-[180ms] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_#0A2730,0_0_0_6px_#C5D300]"
+            className="btn inline-flex h-14 items-center gap-2.5 rounded-[14px] border border-white/20 px-7 text-base font-bold text-white hover:border-white/40 hover:bg-white/10 transition-all duration-[180mg] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_#0A2730,0_0_0_6px_#C5D300]"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M4 19.5l1.2-3.7A8 8 0 1 1 8.4 19z" />

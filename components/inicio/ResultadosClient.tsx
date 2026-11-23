@@ -30,7 +30,7 @@ export function ResultadosClient({ cases, ctaHref, ctaLabel, lang }: Props) {
 
   if (cases.length === 0) return null;
   const cur = cases[currentIdx];
-  const curNum = `Caso ${currentIdx + 1}`;
+  const curNum = `${lang === 'en' ? 'Case' : 'Caso'} ${currentIdx + 1}`;
   const baRight = 100 - sliderPos;
 
   return (
@@ -53,8 +53,8 @@ export function ResultadosClient({ cases, ctaHref, ctaLabel, lang }: Props) {
         </div>
 
         {/* Etiquetas */}
-        <span style={{ position: 'absolute', left: '22px', top: '22px', fontSize: '12px', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', background: 'rgba(10,39,48,0.78)', color: '#FFFFFF', padding: '6px 12px', borderRadius: '999px', pointerEvents: 'none' }}>Antes</span>
-        <span style={{ position: 'absolute', right: '22px', top: '22px', fontSize: '12px', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', background: '#FFFFFF', color: '#0A2730', padding: '6px 12px', borderRadius: '999px', pointerEvents: 'none' }}>Después · {cur.months}</span>
+        <span style={{ position: 'absolute', left: '22px', top: '22px', fontSize: '12px', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', background: 'rgba(10,39,48,0.78)', color: '#FFFFFF', padding: '6px 12px', borderRadius: '999px', pointerEvents: 'none' }}>{lang === 'en' ? 'Before' : 'Antes'}</span>
+        <span style={{ position: 'absolute', right: '22px', top: '22px', fontSize: '12px', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', background: '#FFFFFF', color: '#0A2730', padding: '6px 12px', borderRadius: '999px', pointerEvents: 'none' }}>{lang === 'en' ? 'After' : 'Después'} · {cur.months}</span>
 
         {/* Línea divisora */}
         <div aria-hidden="true" style={{ position: 'absolute', top: 0, bottom: 0, left: `${sliderPos}%`, width: '2px', background: '#C5D300', transform: 'translateX(-1px)', pointerEvents: 'none' }}>
@@ -66,7 +66,7 @@ export function ResultadosClient({ cases, ctaHref, ctaLabel, lang }: Props) {
         </div>
 
         {/* Input range (invisible, overlay completo) */}
-        <label htmlFor={inputId} className="sr-only">Comparar antes y después</label>
+        <label htmlFor={inputId} className="sr-only">{lang === 'en' ? 'Compare before and after' : 'Comparar antes y después'}</label>
         <input
           id={inputId}
           type="range"
@@ -76,7 +76,7 @@ export function ResultadosClient({ cases, ctaHref, ctaLabel, lang }: Props) {
           value={sliderPos}
           onChange={(e) => setSliderPos(Number(e.target.value))}
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0, cursor: 'ew-resize', margin: 0 }}
-          aria-label="Comparar antes y después"
+          aria-label={lang === 'en' ? 'Compare before and after' : 'Comparar antes y después'}
         />
       </div>
 
@@ -89,10 +89,10 @@ export function ResultadosClient({ cases, ctaHref, ctaLabel, lang }: Props) {
           {/* Tabla de datos */}
           <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid rgba(255,255,255,0.18)' }}>
             {[
-              { label: 'Tratamiento', value: cur.tech },
-              { label: 'Detalle', value: cur.units },
-              { label: 'Tiempo transcurrido', value: cur.months },
-              { label: 'Nos visita desde', value: cur.origin },
+              { label: lang === 'en' ? 'Treatment' : 'Tratamiento', value: cur.tech },
+              { label: lang === 'en' ? 'Detail' : 'Detalle', value: cur.units },
+              { label: lang === 'en' ? 'Time elapsed' : 'Tiempo transcurrido', value: cur.months },
+              { label: lang === 'en' ? 'Visits from' : 'Nos visita desde', value: cur.origin },
             ].map((row) => (
               <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', gap: '16px', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,0.18)', fontSize: '15px' }}>
                 <span style={{ color: '#BFD6DB' }}>{row.label}</span>
@@ -112,7 +112,7 @@ export function ResultadosClient({ cases, ctaHref, ctaLabel, lang }: Props) {
                 className="chip"
                 onClick={() => { setCurrentIdx(i); setSliderPos(50); }}
                 aria-pressed={i === currentIdx}
-                aria-label={`Ver caso: ${c.title}`}
+                aria-label={`${lang === 'en' ? 'View case' : 'Ver caso'}: ${c.title}`}
                 style={{
                   width: '72px',
                   height: '72px',
@@ -140,7 +140,7 @@ export function ResultadosClient({ cases, ctaHref, ctaLabel, lang }: Props) {
           >
             {ctaLabel}
           </Link>
-          <span style={{ fontSize: '13px', lineHeight: 1.5, color: '#BFD6DB' }}>Los resultados varían según cada paciente. Solo publicamos fotografías reales con autorización expresa.</span>
+          <span style={{ fontSize: '13px', lineHeight: 1.5, color: '#BFD6DB' }}>{lang === 'en' ? 'Results vary per patient. We only publish real photographs with explicit authorization.' : 'Los resultados varían según cada paciente. Solo publicamos fotografías reales con autorización expresa.'}</span>
         </div>
       </div>
     </div>

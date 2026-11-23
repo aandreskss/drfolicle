@@ -44,7 +44,7 @@ export async function ProcesoSection({ section, lang }: Props) {
           )}
         </div>
 
-        <ProcesoStepper steps={steps} stepLabel={t('step')} />
+        <ProcesoStepper steps={steps} stepLabel={t('step')} stepOf={t('stepOf')} labelNext={t('nextStep')} labelRequest={t('requestAssessment')} />
       </div>
     </section>
   );

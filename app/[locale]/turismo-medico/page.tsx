@@ -96,7 +96,7 @@ export default async function TurismoPage({ params }: { params: Promise<{ locale
       <section className="dark" aria-labelledby="h-t" style={{ background: '#00566E', color: '#FFFFFF', padding: 'clamp(40px,6vw,80px) 0 clamp(72px,8vw,112px)', overflow: 'hidden' }}>
         <div className="wrap g-hero" style={{ display: 'grid', gap: 'clamp(40px,5vw,72px)', alignItems: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-            <nav aria-label="Ruta" style={{ fontSize: '13px', color: '#9BD3DC', display: 'flex', gap: '8px' }}>
+            <nav aria-label={lang === 'en' ? 'Breadcrumb' : 'Ruta'} style={{ fontSize: '13px', color: '#9BD3DC', display: 'flex', gap: '8px' }}>
               <Link href="/" style={{ color: '#9BD3DC', textDecoration: 'none' }}>{homeLabel}</Link>
               <span aria-hidden="true">/</span>
               <span aria-current="page" style={{ color: '#FFFFFF', fontWeight: 600 }}>

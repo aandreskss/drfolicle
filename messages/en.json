@@ -7,7 +7,8 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "lang": "Language",
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "viewAllServices": "View all services →"
   },
   "footer": {
     "services": "Services",
@@ -25,6 +26,9 @@
     "readMore": "Read more",
     "viewMore": "View more",
     "viewLess": "View less",
-    "step": "Step"
+    "step": "Step",
+    "nextStep": "Next stage",
+    "requestAssessment": "Request assessment",
+    "stepOf": "of"
   }
 }

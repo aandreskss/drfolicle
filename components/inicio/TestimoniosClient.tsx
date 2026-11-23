@@ -35,10 +35,10 @@ export function TestimoniosClient({ items, videoSrc, videoPoster, youtubeId, lan
           <span aria-live="polite" style={{ fontSize: '14px', fontWeight: 700, color: '#4B5F66', minWidth: '48px' }}>
             {idx + 1} / {total}
           </span>
-          <button type="button" className="btn chip" onClick={prev} aria-label="Testimonio anterior" style={{ width: '52px', height: '52px', borderRadius: '50%', border: '1.5px solid #0A2730', background: 'transparent', color: '#0A2730', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <button type="button" className="btn chip" onClick={prev} aria-label={lang === 'en' ? 'Previous testimonial' : 'Testimonio anterior'} style={{ width: '52px', height: '52px', borderRadius: '50%', border: '1.5px solid #0A2730', background: 'transparent', color: '#0A2730', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
           </button>
-          <button type="button" className="btn chip" onClick={next} aria-label="Siguiente testimonio" style={{ width: '52px', height: '52px', borderRadius: '50%', border: '1.5px solid #0A2730', background: 'transparent', color: '#0A2730', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <button type="button" className="btn chip" onClick={next} aria-label={lang === 'en' ? 'Next testimonial' : 'Siguiente testimonio'} style={{ width: '52px', height: '52px', borderRadius: '50%', border: '1.5px solid #0A2730', background: 'transparent', color: '#0A2730', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </div>
@@ -52,7 +52,7 @@ export function TestimoniosClient({ items, videoSrc, videoPoster, youtubeId, lan
           {youtubeId ? (
             <iframe
               src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
-              title="Paciente internacional cuenta su experiencia en Dr Follicle Solutions"
+              title={lang === 'en' ? 'International patient shares their experience at Dr Follicle Solutions' : 'Paciente internacional cuenta su experiencia en Dr Follicle Solutions'}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, display: 'block' }}
@@ -71,7 +71,7 @@ export function TestimoniosClient({ items, videoSrc, videoPoster, youtubeId, lan
           )}
           <figcaption style={{ position: 'absolute', left: '16px', top: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px', height: '32px', padding: '0 12px', borderRadius: '999px', background: 'rgba(10,39,48,0.82)', color: '#FFFFFF', fontSize: '12px', fontWeight: 700, pointerEvents: 'none' }}>
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#C5D300' }} />
-            Paciente internacional · video en inglés
+            {lang === 'en' ? 'International patient · English video' : 'Paciente internacional · video en inglés'}
           </figcaption>
         </figure>
 
@@ -89,7 +89,7 @@ export function TestimoniosClient({ items, videoSrc, videoPoster, youtubeId, lan
               <span style={{ fontSize: '14px', color: '#4B5F66' }}>{testi.meta}</span>
             </div>
             <span style={{ fontSize: '12px', color: '#4B5F66', maxWidth: '300px', textAlign: 'right' }}>
-              Reseña publicada en drfolliclesolutions.com.
+              {lang === 'en' ? 'Review published on drfolliclesolutions.com.' : 'Reseña publicada en drfolliclesolutions.com.'}
             </span>
           </figcaption>
         </figure>
@@ -103,7 +103,7 @@ export function TestimoniosClient({ items, videoSrc, videoPoster, youtubeId, lan
             type="button"
             className="chip"
             onClick={() => setIdx(i)}
-            aria-label={`Ir al testimonio ${i + 1}`}
+            aria-label={`${lang === 'en' ? 'Go to testimonial' : 'Ir al testimonio'} ${i + 1}`}
             aria-current={i === idx ? 'true' : undefined}
             style={{ width: '44px', height: '44px', border: 0, background: 'none', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', borderRadius: '50%' }}
           >

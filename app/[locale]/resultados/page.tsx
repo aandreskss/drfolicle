@@ -77,7 +77,7 @@ export default async function ResultadosPage({ params }: { params: Promise<{ loc
       {/* ── HERO + GALERÍA ── */}
       <section className="dark" aria-labelledby="h-t" style={{ background: '#0A2730', color: '#FFFFFF', padding: 'clamp(40px,6vw,80px) 0 clamp(72px,9vw,128px)' }}>
         <div className="wrap" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-          <nav aria-label="Ruta" style={{ fontSize: '13px', color: '#9BD3DC', display: 'flex', gap: '8px' }}>
+          <nav aria-label={lang === 'en' ? 'Breadcrumb' : 'Ruta'} style={{ fontSize: '13px', color: '#9BD3DC', display: 'flex', gap: '8px' }}>
             <Link href="/" style={{ color: '#9BD3DC', textDecoration: 'none' }}>{homeLabel}</Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page" style={{ color: '#FFFFFF', fontWeight: 600 }}>

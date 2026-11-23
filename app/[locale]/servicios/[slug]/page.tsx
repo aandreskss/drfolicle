@@ -264,7 +264,7 @@ export default async function TratamientoPage({
                     src="/videos/how-long-capilar.mp4"
                     controls
                     playsInline
-                    aria-label="Video: ¿Cuándo crece el cabello después del trasplante?"
+                    aria-label={lang === 'en' ? 'Video: When does hair grow after the transplant?' : 'Video: ¿Cuándo crece el cabello después del trasplante?'}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
                 </div>

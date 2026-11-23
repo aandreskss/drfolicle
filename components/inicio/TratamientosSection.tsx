@@ -18,7 +18,8 @@ const ArrowIcon = () => (
   </svg>
 );
 
-function CardT1({ href, num, name, short, imgSrc }: { href: string; num: string; name: string; short: string; imgSrc: string | null }) {
+function CardT1({ href, num, name, short, imgSrc, lang }: { href: string; num: string; name: string; short: string; imgSrc: string | null; lang: string }) {
+  const cta = lang === 'en' ? 'Learn about the treatment' : 'Conoce el tratamiento';
   return (
     <Link href={href} className="card lnk t1" style={{ textDecoration: 'none', color: '#0A2730', display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <div style={{ flex: 1, minHeight: '520px', borderRadius: '28px 28px 999px 999px', overflow: 'hidden', position: 'relative' }}>
@@ -34,14 +35,16 @@ function CardT1({ href, num, name, short, imgSrc }: { href: string; num: string;
         <strong style={{ fontSize: '28px', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{name}</strong>
         <span style={{ fontSize: '16px', color: '#4B5F66' }}>{short}</span>
         <span className="lnk" style={{ fontWeight: 700, fontSize: '15px', color: '#007A8C', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          Conoce el tratamiento<ArrowIcon />
+          {cta}<ArrowIcon />
         </span>
       </div>
     </Link>
   );
 }
 
-function CardT2({ href, num, name, short, imgSrc }: { href: string; num: string; name: string; short: string; imgSrc: string | null }) {
+function CardT2({ href, num, name, short, imgSrc, lang }: { href: string; num: string; name: string; short: string; imgSrc: string | null; lang: string }) {
+  const cta = lang === 'en' ? 'Learn about the treatment' : 'Conoce el tratamiento';
+  const baLabel = lang === 'en' ? 'Before | After' : 'Antes | Después';
   return (
     <Link href={href} className="card lnk t2" style={{ textDecoration: 'none', color: '#0A2730', background: '#FFFFFF', borderRadius: '28px', overflow: 'hidden', display: 'flex', flexWrap: 'wrap', minHeight: '320px' }}>
       <div style={{ flex: '1 1 260px', minHeight: '300px', position: 'relative', overflow: 'hidden', background: '#F2F1F3' }}>
@@ -49,7 +52,7 @@ function CardT2({ href, num, name, short, imgSrc }: { href: string; num: string;
           ? <img src={imgSrc} alt={name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 30%', display: 'block' }} />
           : <div className="ph" style={{ position: 'absolute', inset: 0 }} />}
         <span style={{ position: 'absolute', left: '16px', bottom: '16px', display: 'inline-flex', gap: '8px', alignItems: 'center', height: '30px', padding: '0 12px', borderRadius: '999px', background: '#0A2730', color: '#FFFFFF', fontSize: '11px', fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-          Antes <span style={{ opacity: 0.5 }}>|</span> Después
+          {lang === 'en' ? 'Before' : 'Antes'} <span style={{ opacity: 0.5 }}>|</span> {lang === 'en' ? 'After' : 'Después'}
         </span>
       </div>
       <div style={{ flex: '1 1 280px', padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: '8px' }}>
@@ -57,14 +60,15 @@ function CardT2({ href, num, name, short, imgSrc }: { href: string; num: string;
         <strong style={{ fontSize: '26px', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{name}</strong>
         <span style={{ fontSize: '16px', color: '#4B5F66' }}>{short}</span>
         <span className="lnk" style={{ fontWeight: 700, fontSize: '15px', color: '#007A8C', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          Conoce el tratamiento<ArrowIcon />
+          {cta}<ArrowIcon />
         </span>
       </div>
     </Link>
   );
 }
 
-function CardT3({ href, num, name, short, imgSrc }: { href: string; num: string; name: string; short: string; imgSrc: string | null }) {
+function CardT3({ href, num, name, short, imgSrc, lang }: { href: string; num: string; name: string; short: string; imgSrc: string | null; lang: string }) {
+  const cta = lang === 'en' ? 'Learn about the treatment' : 'Conoce el tratamiento';
   return (
     <Link href={href} className="card lnk t3" style={{ textDecoration: 'none', color: '#0A2730', display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <div style={{ height: '260px', borderRadius: '28px', overflow: 'hidden', position: 'relative' }}>
@@ -77,14 +81,15 @@ function CardT3({ href, num, name, short, imgSrc }: { href: string; num: string;
         <strong style={{ fontSize: '22px', letterSpacing: '-0.015em' }}>{name}</strong>
         <span style={{ fontSize: '15px', color: '#4B5F66' }}>{short}</span>
         <span className="lnk" style={{ fontWeight: 700, fontSize: '15px', color: '#007A8C', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          Conoce el tratamiento<ArrowIcon />
+          {cta}<ArrowIcon />
         </span>
       </div>
     </Link>
   );
 }
 
-function CardT4({ href, num, name, short }: { href: string; num: string; name: string; short: string }) {
+function CardT4({ href, num, name, short, lang }: { href: string; num: string; name: string; short: string; lang: string }) {
+  const cta = lang === 'en' ? 'Learn about the treatment' : 'Conoce el tratamiento';
   return (
     <Link href={href} className="lnk t4" style={{ textDecoration: 'none', color: '#FFFFFF', borderRadius: '28px', overflow: 'hidden', display: 'flex', minHeight: '360px' }}>
       {/* Imagen */}
@@ -102,7 +107,7 @@ function CardT4({ href, num, name, short }: { href: string; num: string; name: s
         <strong style={{ fontSize: '24px', letterSpacing: '-0.015em', lineHeight: 1.15 }}>{name}</strong>
         <span style={{ fontSize: '15px', color: '#DCEBEE' }}>{short}</span>
         <span className="lnk" style={{ fontWeight: 700, fontSize: '15px', color: '#C5D300', display: 'inline-flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
-          Conoce el tratamiento<ArrowIcon />
+          {cta}<ArrowIcon />
         </span>
       </div>
     </Link>
@@ -139,10 +144,10 @@ export function TratamientosSection({ section, lang, treatments, mediaMap }: Pro
             const layout = t.home_layout;
             const num = `0${idx + 1}`;
 
-            if (layout === 0) return <CardT1 key={t.id} href={href} num={num} name={name} short={short} imgSrc={imgSrc} />;
-            if (layout === 1) return <CardT2 key={t.id} href={href} num={num} name={name} short={short} imgSrc={imgSrc} />;
-            if (layout === 2) return <CardT3 key={t.id} href={href} num={num} name={name} short={short} imgSrc={imgSrc} />;
-            return <CardT4 key={t.id} href={href} num={num} name={name} short={short} />;
+            if (layout === 0) return <CardT1 key={t.id} href={href} num={num} name={name} short={short} imgSrc={imgSrc} lang={lang} />;
+            if (layout === 1) return <CardT2 key={t.id} href={href} num={num} name={name} short={short} imgSrc={imgSrc} lang={lang} />;
+            if (layout === 2) return <CardT3 key={t.id} href={href} num={num} name={name} short={short} imgSrc={imgSrc} lang={lang} />;
+            return <CardT4 key={t.id} href={href} num={num} name={name} short={short} lang={lang} />;
           })}
         </div>
       </div>

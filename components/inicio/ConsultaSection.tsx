@@ -42,23 +42,23 @@ export function ConsultaSection({ section, lang }: Props) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '15px', color: '#24414A' }}>
               <span style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007A8C" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>
-                Respuesta en menos de 24 horas
+                {lang === 'en' ? 'Response within 24 hours' : 'Respuesta en menos de 24 horas'}
               </span>
               <span style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007A8C" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>
-                No te pediremos fotografías en este paso
+                {lang === 'en' ? 'No photos needed at this stage' : 'No te pediremos fotografías en este paso'}
               </span>
               <span style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007A8C" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>
-                Atención en español e inglés
+                {lang === 'en' ? 'Care in English and Spanish' : 'Atención en español e inglés'}
               </span>
             </div>
           )}
 
           {/* Bloque WhatsApp */}
           <div style={{ background: '#00566E', color: '#FFFFFF', borderRadius: '24px', padding: '28px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <strong style={{ fontSize: '20px' }}>¿Prefieres escribirnos ahora?</strong>
-            <span style={{ fontSize: '15px', color: '#DCEBEE' }}>Habla directamente con nuestro equipo por WhatsApp: +1 (954) 853-5335.</span>
+            <strong style={{ fontSize: '20px' }}>{lang === 'en' ? 'Prefer to reach us directly?' : '¿Prefieres escribirnos ahora?'}</strong>
+            <span style={{ fontSize: '15px', color: '#DCEBEE' }}>{lang === 'en' ? 'Chat directly with our team on WhatsApp: +1 (954) 853-5335.' : 'Habla directamente con nuestro equipo por WhatsApp: +1 (954) 853-5335.'}</span>
             <a
               href="https://wa.me/19548535335"
               target="_blank"
@@ -67,7 +67,7 @@ export function ConsultaSection({ section, lang }: Props) {
               style={{ alignSelf: 'flex-start', height: '52px', padding: '0 22px', borderRadius: '14px', background: '#C5D300', color: '#0A2730', fontWeight: 700, fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '10px' }}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 19.5l1.2-3.7A8 8 0 1 1 8.4 19z"/></svg>
-              Escribir por WhatsApp
+              {lang === 'en' ? 'Write on WhatsApp' : 'Escribir por WhatsApp'}
             </a>
           </div>
         </div>

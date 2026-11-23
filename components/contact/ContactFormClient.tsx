@@ -63,7 +63,15 @@ export function ContactFormClient({ lang, waPhone }: { lang: Lang; waPhone: stri
     const form = e.currentTarget;
     const hp = (form.elements.namedItem('website') as HTMLInputElement)?.value ?? '';
 
-    const lines = [
+    const lines = lang === 'en' ? [
+      `Hello, I'm interested in an assessment at Dr Follicle Solutions.`,
+      ``,
+      `*Name:* ${name}`,
+      `*WhatsApp:* ${cc} ${phone}`,
+      `*Email:* ${email}`,
+      `*Interest:* ${interests.join(', ')}`,
+      msg ? `*Message:* ${msg}` : null,
+    ].filter(Boolean).join('\n') : [
       `Hola, me interesa una valoración en Dr Follicle Solutions.`,
       ``,
       `*Nombre:* ${name}`,
@@ -82,7 +90,9 @@ export function ContactFormClient({ lang, waPhone }: { lang: Lang; waPhone: stri
 
   if (status === 'success') {
     const firstName = name.trim().split(' ')[0] ?? '';
-    const intMsg = `Hola, soy ${name.trim()}. Acabo de solicitar mi valoración en la web (${interests.join(', ')}, ${country}).`;
+    const intMsg = lang === 'en'
+      ? `Hello, I'm ${name.trim()}. I just requested my assessment on the website (${interests.join(', ')}, ${country}).`
+      : `Hola, soy ${name.trim()}. Acabo de solicitar mi valoración en la web (${interests.join(', ')}, ${country}).`;
     const waHref = `https://wa.me/${waPhone.replace(/\D/g, '')}?text=${encodeURIComponent(intMsg)}`;
     return (
       <div role="status" aria-live="polite" style={{ display: 'flex', flexDirection: 'column', gap: '22px', paddingTop: '16px' }}>

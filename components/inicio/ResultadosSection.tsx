@@ -19,14 +19,14 @@ export function ResultadosSection({ section, lang, cases, mediaMap }: Props) {
     return {
       id: c.id,
       title: pick(c.title, lang),
-      tech: 'Trasplante capilar FUE',
+      tech: lang === 'en' ? 'FUE Hair Transplant' : 'Trasplante capilar FUE',
       units: c.units ?? '',
       months: c.months ?? '',
       origin: c.origin ?? '',
       beforeSrc,
       afterSrc,
-      beforeAlt: `Antes — ${pick(c.title, lang)}`,
-      afterAlt: `Después — ${pick(c.title, lang)}`,
+      beforeAlt: lang === 'en' ? `Before — ${pick(c.title, lang)}` : `Antes — ${pick(c.title, lang)}`,
+      afterAlt: lang === 'en' ? `After — ${pick(c.title, lang)}` : `Después — ${pick(c.title, lang)}`,
     };
   }).filter((c) => c.beforeSrc && c.afterSrc);
 
@@ -42,7 +42,7 @@ export function ResultadosSection({ section, lang, cases, mediaMap }: Props) {
           </h2>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', height: '40px', padding: '0 16px', borderRadius: '999px', border: '1.5px solid rgba(255,255,255,0.35)', fontSize: '14px', fontWeight: 700 }}>
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#C5D300' }} />
-            Trasplante capilar · casos reales
+            {lang === 'en' ? 'Hair transplant · real cases' : 'Trasplante capilar · casos reales'}
           </span>
         </div>
 
@@ -55,7 +55,7 @@ export function ResultadosSection({ section, lang, cases, mediaMap }: Props) {
           />
         ) : (
           <div style={{ textAlign: 'center', padding: '64px 0', color: '#BFD6DB', fontSize: '15px' }}>
-            Pronto publicaremos casos reales de pacientes con autorización.
+            {lang === 'en' ? "We'll soon publish real patient cases with authorization." : 'Pronto publicaremos casos reales de pacientes con autorización.'}
           </div>
         )}
 

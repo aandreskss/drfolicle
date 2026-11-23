@@ -9,10 +9,16 @@ import { Link } from '@/i18n/navigation';
 import type { Lang } from '@/lib/content/types';
 import { pickText, pickItem, pick } from '@/lib/content/types';
 
-export const metadata: Metadata = {
-  title: 'Turismo médico capilar en Medellín',
-  description: 'Restauración capilar en Medellín con acompañamiento completo para pacientes internacionales.',
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return locale === 'en'
+    ? { title: 'Hair Transplant Medical Tourism in Medellín', description: 'Hair restoration in Medellín with full support for international patients. Free remote assessment.' }
+    : { title: 'Turismo médico capilar en Medellín', description: 'Restauración capilar en Medellín con acompañamiento completo para pacientes internacionales.' };
+}
 
 export default async function TurismoPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -47,8 +53,8 @@ export default async function TurismoPage({ params }: { params: Promise<{ locale
         when: d.m ?? '',
         title: d.t ?? '',
         text: d.d ?? '',
-        we: d.we ?? '',
-        you: d.you ?? '',
+        we: d.w ?? '',
+        you: d.u ?? '',
         imgSrc: slot ? slotUrl(slot.src) : '',
         imgAlt: slot ? pick(slot.alt, lang) : '',
       };

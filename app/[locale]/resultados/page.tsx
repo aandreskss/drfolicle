@@ -8,9 +8,25 @@ import { Link } from '@/i18n/navigation';
 import type { Lang } from '@/lib/content/types';
 import { pickText, pick } from '@/lib/content/types';
 
-export const metadata: Metadata = {
-  title: 'Resultados · antes y después',
-  description: 'Galería de resultados de trasplante capilar, barba y cejas. Fotografías reales con autorización.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return locale === 'en'
+    ? { title: 'Results · before and after', description: 'Gallery of hair, beard and eyebrow transplant results. Real photos published with patient consent.' }
+    : { title: 'Resultados · antes y después', description: 'Galería de resultados de trasplante capilar, barba y cejas. Fotografías reales con autorización.' };
+}
+
+const COUNTRY_EN: Record<string, string> = {
+  'Estados Unidos': 'United States',
+  'México': 'Mexico',
+  'Panamá': 'Panama',
+  'República Dominicana': 'Dominican Republic',
+  'Costa Rica': 'Costa Rica',
+  'Puerto Rico': 'Puerto Rico',
+  'Colombia': 'Colombia',
 };
 
 const CAT_LABEL: Record<string, string> = {
@@ -51,7 +67,7 @@ export default async function ResultadosPage({ params }: { params: Promise<{ loc
     tech: lang === 'en' ? 'FUE hair transplant' : 'Trasplante capilar FUE',
     units: c.units ? (lang === 'en' ? `${c.units} units` : `${c.units} unidades`) : '',
     months: c.months ? (lang === 'en' ? `${c.months} months` : `${c.months} meses`) : '',
-    origin: c.origin ?? '',
+    origin: lang === 'en' && c.origin ? (COUNTRY_EN[c.origin] ?? c.origin) : (c.origin ?? ''),
     beforeSrc: mediaMap[c.before_media_id!] ?? '',
     afterSrc: mediaMap[c.after_media_id!] ?? '',
     beforeAlt: `${lang === 'en' ? 'Before' : 'Antes'} — ${pick(c.title, lang)}`,
@@ -164,10 +180,10 @@ export default async function ResultadosPage({ params }: { params: Promise<{ loc
                 </figure>
               )) : (
                 [
-                  { quote: lang === 'en' ? 'Exceptional care from airport pickup to procedure and aftercare.' : 'Atención excepcional desde la recogida en el aeropuerto hasta el procedimiento y el postoperatorio.', name: 'Hayxa Escobar', meta: '[País] · Trasplante capilar' },
-                  { quote: lang === 'en' ? 'They took care of every detail, from reliable transportation to accommodation.' : 'Se encargaron de cada detalle, desde un transporte confiable hasta el alojamiento.', name: 'Tatiana Ortega', meta: '[País] · Trasplante capilar' },
-                  { quote: lang === 'en' ? 'At six months post-op we already see a big difference, and they took care of us every step.' : 'A los seis meses de la operación ya vemos una gran diferencia, y nos cuidaron en cada momento.', name: 'Daniella G.', meta: '[País] · Acompañante de paciente' },
-                  { quote: lang === 'en' ? 'From the initial consultation to the final results, the whole process was seamless.' : 'Desde la consulta inicial hasta los resultados finales, todo el proceso fue fluido.', name: 'John E.', meta: '[País] · Trasplante capilar' },
+                  { quote: lang === 'en' ? 'Exceptional care from airport pickup to procedure and aftercare.' : 'Atención excepcional desde la recogida en el aeropuerto hasta el procedimiento y el postoperatorio.', name: 'Hayxa Escobar', meta: lang === 'en' ? 'Hair transplant' : 'Trasplante capilar' },
+                  { quote: lang === 'en' ? 'They took care of every detail, from reliable transportation to accommodation.' : 'Se encargaron de cada detalle, desde un transporte confiable hasta el alojamiento.', name: 'Tatiana Ortega', meta: lang === 'en' ? 'Hair transplant' : 'Trasplante capilar' },
+                  { quote: lang === 'en' ? 'At six months post-op we already see a big difference, and they took care of us every step.' : 'A los seis meses de la operación ya vemos una gran diferencia, y nos cuidaron en cada momento.', name: 'Daniella G.', meta: lang === 'en' ? 'Patient companion' : 'Acompañante de paciente' },
+                  { quote: lang === 'en' ? 'From the initial consultation to the final results, the whole process was seamless.' : 'Desde la consulta inicial hasta los resultados finales, todo el proceso fue fluido.', name: 'John E.', meta: lang === 'en' ? 'Hair transplant' : 'Trasplante capilar' },
                 ].map((q, i) => (
                   <figure key={i} style={{ margin: 0, background: '#FFFFFF', borderRadius: '24px', padding: '26px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '20px' }}>
                     <blockquote style={{ margin: 0, fontFamily: "'Instrument Serif', Georgia, serif", fontSize: '22px', lineHeight: 1.25 }}>
@@ -189,7 +205,7 @@ export default async function ResultadosPage({ params }: { params: Promise<{ loc
       <section aria-labelledby="cta-t" style={{ background: '#E3F2F4', padding: 'clamp(72px,9vw,120px) 0' }}>
         <div className="wrap g-two" style={{ display: 'grid', gap: 'clamp(32px,5vw,80px)', alignItems: 'end' }}>
           <h2 id="cta-t" style={{ margin: 0, fontSize: 'clamp(34px,4.4vw,60px)', lineHeight: 1, letterSpacing: '-0.035em', fontWeight: 800 }}>
-            {ctaText?.t1 ?? (lang === 'en' ? '¿Ready to see' : '¿Listo para ver')}{' '}
+            {ctaText?.t1 ?? (lang === 'en' ? 'Ready to see' : '¿Listo para ver')}{' '}
             <em className="accent" style={{ color: '#007A8C' }}>{ctaText?.t2 ?? (lang === 'en' ? 'your own result?' : 'tu propio resultado?')}</em>
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>

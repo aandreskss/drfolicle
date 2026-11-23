@@ -63,35 +63,19 @@ export function ContactFormClient({ lang, waPhone }: { lang: Lang; waPhone: stri
     const form = e.currentTarget;
     const hp = (form.elements.namedItem('website') as HTMLInputElement)?.value ?? '';
 
-    try {
-      const res = await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          phone: `${cc} ${phone}`,
-          interests,
-          message: msg || undefined,
-          hp,
-          locale: lang,
-        }),
-      });
-      if (res.status === 429) {
-        setErrorMsg(lang === 'en' ? 'Too many requests. Please try again in an hour.' : 'Demasiadas solicitudes. Intenta de nuevo en una hora.');
-        setStatus('error');
-        return;
-      }
-      if (!res.ok) {
-        setErrorMsg(lang === 'en' ? 'Something went wrong. Please try again.' : 'Hubo un error al enviar. Por favor intenta de nuevo.');
-        setStatus('error');
-        return;
-      }
-      setStatus('success');
-    } catch {
-      setErrorMsg(lang === 'en' ? 'Something went wrong. Please try again.' : 'Hubo un error al enviar. Por favor intenta de nuevo.');
-      setStatus('error');
-    }
+    const lines = [
+      `Hola, me interesa una valoración en Dr Follicle Solutions.`,
+      ``,
+      `*Nombre:* ${name}`,
+      `*WhatsApp:* ${cc} ${phone}`,
+      `*Email:* ${email}`,
+      `*Interés:* ${interests.join(', ')}`,
+      msg ? `*Mensaje:* ${msg}` : null,
+    ].filter(Boolean).join('\n');
+
+    const waUrl = `https://wa.me/${waPhone.replace(/\D/g, '')}?text=${encodeURIComponent(lines)}`;
+    setStatus('success');
+    window.open(waUrl, '_blank');
   }
 
   const errs = tried ? validate() : {};

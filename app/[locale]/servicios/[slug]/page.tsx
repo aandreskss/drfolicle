@@ -1,6 +1,13 @@
-export const instant = false;
-
 import { notFound } from 'next/navigation';
+
+export async function generateStaticParams() {
+  return ['trasplante-capilar', 'trasplante-de-barba', 'trasplante-de-cejas', 'terapias-capilares'].flatMap(
+    (slug) => [
+      { locale: 'es', slug },
+      { locale: 'en', slug },
+    ]
+  );
+}
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';

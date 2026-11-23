@@ -1,8 +1,8 @@
-import { unstable_cache } from 'next/cache';
+import { cache } from 'react';
 import { anonClient } from './client';
 import type { PageSection, SectionData } from './types';
 
-export const getPageSections = unstable_cache(
+export const getPageSections = cache(
   async (pageSlug: string): Promise<PageSection[]> => {
     const { data, error } = await anonClient()
       .from('v_page_sections')
@@ -22,9 +22,7 @@ export const getPageSections = unstable_cache(
       position: row.position,
       data: row.data,
     }));
-  },
-  ['page-sections'],
-  { tags: ['site'] }
+  }
 );
 
 /** Devuelve una sección específica o undefined si no existe / no está publicada. */

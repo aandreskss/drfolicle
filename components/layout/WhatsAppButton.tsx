@@ -1,3 +1,4 @@
+import { getLocale } from 'next-intl/server';
 import { getSettings } from '@/lib/content/settings';
 
 interface ButtonsSettings {
@@ -16,15 +17,19 @@ function waUrl(phone: string, msg: string) {
 }
 
 export async function WhatsAppButton() {
-  const [buttons, contact] = await Promise.all([
+  const [buttons, contact, locale] = await Promise.all([
     getSettings<ButtonsSettings>('buttons'),
     getSettings<ContactSettings>('contact'),
+    getLocale(),
   ]);
 
   if (!buttons?.waOn) return null;
 
   const phone = contact?.wa ?? '19548535335';
-  const href = waUrl(phone, buttons.waMsg ?? '');
+  const waMsg = locale === 'en'
+    ? "Hello, I'd like to schedule an assessment."
+    : (buttons?.waMsg ?? '');
+  const href = waUrl(phone, waMsg);
 
   return (
     <a

@@ -236,7 +236,7 @@ export function HeaderInner({
       {/* Mobile menu overlay */}
       {menuOpen && (
         <nav
-          aria-label="Menú móvil"
+          aria-label={locale === 'en' ? 'Mobile menu' : 'Menú móvil'}
           className="fixed top-16 left-0 right-0 z-20 border-b border-line bg-ground px-5 pb-6 pt-2 shadow-[0_24px_48px_rgba(10,39,48,0.12)]"
         >
           {visibleNav.map((item) => (

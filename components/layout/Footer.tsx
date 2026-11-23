@@ -163,9 +163,12 @@ export async function Footer() {
             )}
             <span style={{ color: '#BFD6DB' }}>
               {contact?.city ?? 'Medellín - Antioquia'}
-              {(contact?.address || contact?.hours) && (
-                <><br />{[contact?.address, contact?.hours].filter(Boolean).join(' · ')}</>
-              )}
+              {(() => {
+                const addr = contact?.address?.startsWith('[') ? '' : contact?.address;
+                const hrs = contact?.hours?.startsWith('[') ? '' : contact?.hours;
+                const parts = [addr, hrs].filter(Boolean);
+                return parts.length > 0 ? <><br />{parts.join(' · ')}</> : null;
+              })()}
             </span>
             {activeSocial.length > 0 && (
               <div style={{ display: 'flex', gap: '8px', paddingTop: '8px' }}>

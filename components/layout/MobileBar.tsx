@@ -27,7 +27,10 @@ export async function MobileBar() {
   if (!buttons?.barOn) return null;
 
   const phone = contact?.wa ?? '19548535335';
-  const href = waUrl(phone, buttons.waMsg ?? '');
+  const waMsg = locale === 'en'
+    ? "Hello, I'd like to schedule an assessment."
+    : (buttons?.waMsg ?? '');
+  const href = waUrl(phone, waMsg);
 
   return (
     <div
@@ -40,7 +43,7 @@ export async function MobileBar() {
         href="/contacto"
         className="flex flex-1 h-14 items-center justify-center rounded-[14px] bg-teal-deep text-base font-bold text-white shadow-[0_10px_24px_rgba(10,39,48,0.2)] hover:bg-teal-petroleo transition-colors duration-[180ms] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_#F7F8F5,0_0_0_6px_#0196AD]"
       >
-        {buttons.cta}
+        {locale === 'en' ? 'Free assessment' : (buttons.cta || 'Valoración gratis')}
       </a>
       {buttons.waOn && (
         <a

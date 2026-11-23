@@ -25,10 +25,19 @@ const instrumentSerif = Instrument_Serif({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: { default: 'Dr Follicle Solutions', template: '%s | Dr Follicle Solutions' },
-  description: 'Restauración capilar de precisión en Medellín. Valoración gratis.',
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: { default: 'Dr Follicle Solutions', template: '%s | Dr Follicle Solutions' },
+    description: locale === 'en'
+      ? 'Precision hair restoration in Medellín. Free assessment.'
+      : 'Restauración capilar de precisión en Medellín. Valoración gratis.',
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

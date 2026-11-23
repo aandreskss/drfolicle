@@ -118,14 +118,23 @@ export default async function TratamientoPage({
   const faqText = faqSection ? pickText(faqSection.data.content, lang) : {};
   const ctaText = ctaSection ? pickText(ctaSection.data.content, lang) : {};
 
+  const COUNTRY_EN: Record<string, string> = {
+    'Estados Unidos': 'United States',
+    'México': 'Mexico',
+    'Panamá': 'Panama',
+    'República Dominicana': 'Dominican Republic',
+    'Costa Rica': 'Costa Rica',
+    'Puerto Rico': 'Puerto Rico',
+  };
+
   const casesData = cases.map((c) => ({
     id: c.id,
     title: pick(c.title, lang),
     beforeUrl: c.before_media_id ? (mediaMap[c.before_media_id] ?? null) : null,
     afterUrl: c.after_media_id ? (mediaMap[c.after_media_id] ?? null) : null,
     months: c.months,
-    units: c.units,
-    origin: c.origin,
+    units: lang === 'en' && c.units ? c.units.replace(/\./g, ',') : c.units,
+    origin: lang === 'en' && c.origin ? (COUNTRY_EN[c.origin] ?? c.origin) : c.origin,
   }));
 
   const faqItems = faqs.map((f) => ({ id: f.id, question: pick(f.question, lang), answer: pick(f.answer, lang) }));
@@ -252,8 +261,8 @@ export default async function TratamientoPage({
               <div className="g-two" style={{ display: 'grid', gap: 'clamp(32px,5vw,72px)', alignItems: 'center' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                   <h2 id="f-t" style={{ margin: 0, fontSize: 'clamp(34px,4.4vw,60px)', lineHeight: 1, letterSpacing: '-0.035em', fontWeight: 800, textWrap: 'balance' as never }}>
-                    {fueText.t1 ?? 'Trasplante capilar con'}{' '}
-                    <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#0196AD' }}>{fueText.t2 ?? 'técnica FUE.'}</span>
+                    {fueText.t1 ?? (lang === 'en' ? 'Hair transplant with' : 'Trasplante capilar con')}{' '}
+                    <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#0196AD' }}>{fueText.t2 ?? (lang === 'en' ? 'FUE technique.' : 'técnica FUE.')}</span>
                   </h2>
                   {fueText.text && (
                     <p style={{ margin: 0, fontSize: 'clamp(17px,1.4vw,20px)', lineHeight: 1.6, color: '#24414A' }}>{fueText.text}</p>

@@ -11,10 +11,16 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import type { Lang } from '@/lib/content/types';
 import { pick } from '@/lib/content/types';
 
-export const metadata: Metadata = {
-  title: 'Servicios de restauración capilar',
-  description: 'Tratamientos de restauración capilar en Medellín. Trasplante capilar, barba y cejas con técnica FUE.',
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return locale === 'en'
+    ? { title: 'Hair Restoration Services', description: 'Hair restoration treatments in Medellín: hair transplant, beard and eyebrow transplants with FUE technique. For men and women.' }
+    : { title: 'Servicios de restauración capilar', description: 'Tratamientos de restauración capilar en Medellín. Trasplante capilar, barba y cejas con técnica FUE.' };
+}
 
 export default async function ServiciosPage({
   params,

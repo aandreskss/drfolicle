@@ -140,7 +140,7 @@ export function TratamientosSection({ section, lang, treatments, mediaMap }: Pro
             const name = pick(t.name, lang);
             const short = pick(t.short, lang);
             const imgSrc = t.image_media_id ? (mediaMap[t.image_media_id] ?? null) : null;
-            const href = t.page_slug ? `/${t.page_slug}` : '/servicios';
+            const href = t.page_slug ? `/servicios/${t.page_slug}` : '/servicios';
             const layout = t.home_layout;
             const num = `0${idx + 1}`;
 

@@ -44,7 +44,14 @@ export async function ProcesoSection({ section, lang }: Props) {
           )}
         </div>
 
-        <ProcesoStepper steps={steps} stepLabel={t('step')} stepOf={t('stepOf')} labelNext={t('nextStep')} labelRequest={t('requestAssessment')} />
+        <ProcesoStepper
+          steps={steps}
+          stepLabel={t('step')}
+          stepOf={t('stepOf')}
+          labelNext={t('nextStep')}
+          labelRequest={t('requestAssessment')}
+          youtubeIds={['u0ZRnELhkxw', '9GGD23JkUjI', 'JETWE-IN7AA', 'RLTn8fELpno', 'hhBgHUbKaHY']}
+        />
       </div>
     </section>
   );

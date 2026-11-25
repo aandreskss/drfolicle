@@ -16,9 +16,10 @@ interface Props {
   stepOf: string;
   labelNext: string;
   labelRequest: string;
+  youtubeIds?: string[];
 }
 
-export function ProcesoStepper({ steps, stepLabel, stepOf, labelNext, labelRequest }: Props) {
+export function ProcesoStepper({ steps, stepLabel, stepOf, labelNext, labelRequest, youtubeIds }: Props) {
   const [active, setActive] = useState(0);
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -128,10 +129,10 @@ export function ProcesoStepper({ steps, stepLabel, stepOf, labelNext, labelReque
       >
         {/* Imagen / Video */}
         <div style={{ height: 'clamp(280px,30vw,420px)', borderRadius: '24px', overflow: 'hidden', position: 'relative', background: '#0A2730' }}>
-          {active === 0
+          {youtubeIds?.[active]
             ? <iframe
-                src="https://www.youtube.com/embed/IurbJx78HvU"
-                title={steps[0]?.t ?? 'Dr Follicle Solutions'}
+                src={`https://www.youtube.com/embed/${youtubeIds[active]}?rel=0&modestbranding=1`}
+                title={step?.t ?? 'Dr Follicle Solutions'}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}

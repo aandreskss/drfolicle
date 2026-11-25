@@ -70,13 +70,12 @@ export default async function TurismoPage({ params }: { params: Promise<{ locale
     ? ['Hotel', 'Rooms', 'The clinic', 'Tourist tours']
     : ['Hotel', 'Habitaciones', 'La clínica', 'Salidas turísticas'];
 
-  // Imágenes de referencia (Unsplash) mientras el CMS no tenga slots propios
-  const ESTADIA_MAIN = 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=1200&q=80';
+  const ESTADIA_MAIN = '/images/medellin-provenza.jpg';
   const ESTADIA_REF = [
     { src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80', alt: lang === 'en' ? 'Hotel in Medellín' : 'Hotel en Medellín' },
     { src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=700&q=80', alt: lang === 'en' ? 'Premium hotel room' : 'Habitación de hotel premium' },
-    { src: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=700&q=80', alt: lang === 'en' ? 'Modern clinic' : 'Clínica moderna' },
-    { src: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=700&q=80', alt: lang === 'en' ? 'El Peñol de Guatapé' : 'El Peñol de Guatapé, Antioquia' },
+    { src: '/images/terapias-cirujano.jpg', alt: lang === 'en' ? 'Dr Follicle Solutions clinic' : 'Clínica Dr Follicle Solutions' },
+    { src: '/images/medellin.jpg', alt: lang === 'en' ? 'Medellín, Colombia' : 'Medellín, Colombia' },
   ];
 
   // --- INCLUYE ---

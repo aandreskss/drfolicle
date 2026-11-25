@@ -105,7 +105,7 @@ export function ResultadosClient({ cases, ctaHref, ctaLabel, lang }: Props) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {/* Miniaturas */}
           <div style={{ display: 'flex', gap: '10px' }}>
-            {cases.slice(0, 4).map((c, i) => (
+            {cases.slice(0, 5).map((c, i) => (
               <button
                 key={c.id}
                 type="button"

@@ -33,7 +33,8 @@ export function GarantiasSection({ lang }: Props) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
           <div className="card" style={{ borderRadius: '28px', overflow: 'hidden', background: '#0A2730', aspectRatio: '9 / 16', maxHeight: '580px', position: 'relative' }}>
             <VideoAutoplay
-              src="/videos/when-does-it-grow.mp4"
+              src="/videos/video-duracion.mp4"
+              poster="/images/poster-duracion.jpg"
               controls
               playsInline
               aria-label={lang === 'en' ? 'Video: when does hair grow back after the transplant?' : 'Video: ¿cuándo vuelve a crecer el cabello?'}

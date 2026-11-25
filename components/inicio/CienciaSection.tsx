@@ -29,7 +29,8 @@ export function CienciaSection({ section, lang }: Props) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div style={{ height: 'clamp(300px,34vw,480px)', borderRadius: '28px 28px 400px 400px / 28px 28px 200px 200px', overflow: 'hidden', position: 'relative', background: '#0A2730' }}>
                 <VideoAutoplay
-                  src="/videos/does-it-hurt.mp4"
+                  src="/videos/video-duele.mp4"
+                  poster="/images/poster-duele.jpg"
                   controls
                   playsInline
                   aria-label={lang === 'en' ? 'Video: patient shares what the procedure is like' : 'Video: paciente cuenta cómo es el procedimiento'}

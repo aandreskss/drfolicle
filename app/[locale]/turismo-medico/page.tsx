@@ -264,17 +264,19 @@ export default async function TurismoPage({ params }: { params: Promise<{ locale
       <section aria-labelledby="q-t" style={{ padding: 'clamp(72px,9vw,128px) 0' }}>
         <div className="wrap g-two" style={{ display: 'grid', gap: '24px', alignItems: 'stretch' }}>
           <figure style={{ margin: 0, position: 'relative', minHeight: '520px', borderRadius: '28px', overflow: 'hidden', background: '#0A2730' }}>
-            {testimonioVideoSlot?.src ? (
-              <>
-                <VideoAutoplay src={slotUrl(testimonioVideoSlot.src)} controls playsInline aria-label={pick(testimonioVideoSlot.alt, lang)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                <figcaption style={{ position: 'absolute', left: '16px', top: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px', height: '32px', padding: '0 12px', borderRadius: '999px', background: 'rgba(10,39,48,0.82)', color: '#FFFFFF', fontSize: '12px', fontWeight: 700, pointerEvents: 'none' }}>
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#C5D300' }} />
-                  {lang === 'en' ? 'International patient · in English' : 'Paciente internacional · en inglés'}
-                </figcaption>
-              </>
-            ) : (
-              <div className="ph-d" style={{ position: 'absolute', inset: 0 }} aria-hidden="true" />
-            )}
+            <>
+              <VideoAutoplay
+                src={testimonioVideoSlot?.src ? (slotUrl(testimonioVideoSlot.src) ?? '/videos/testimonio-reel.mp4') : '/videos/testimonio-reel.mp4'}
+                controls
+                playsInline
+                aria-label={testimonioVideoSlot?.src ? pick(testimonioVideoSlot.alt, lang) : (lang === 'en' ? 'Patient testimonial' : 'Testimonio de paciente')}
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+              <figcaption style={{ position: 'absolute', left: '16px', top: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px', height: '32px', padding: '0 12px', borderRadius: '999px', background: 'rgba(10,39,48,0.82)', color: '#FFFFFF', fontSize: '12px', fontWeight: 700, pointerEvents: 'none' }}>
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#C5D300' }} />
+                {lang === 'en' ? 'International patient · in English' : 'Paciente internacional · en inglés'}
+              </figcaption>
+            </>
           </figure>
           <figure style={{ margin: 0, background: '#E3F2F4', borderRadius: '28px', padding: 'clamp(28px,4vw,56px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '32px' }}>
             <h2 id="q-t" style={{ margin: 0, fontSize: '12px', letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>

@@ -155,17 +155,19 @@ export default async function ResultadosPage({ params }: { params: Promise<{ loc
           </div>
           <div className="g-testi" style={{ display: 'grid', gap: '24px', alignItems: 'stretch' }}>
             <figure style={{ margin: 0, position: 'relative', minHeight: '560px', borderRadius: '28px', overflow: 'hidden', background: '#0A2730' }}>
-              {testiVideoSlot?.src ? (
-                <>
-                  <VideoAutoplay src={slotUrl(testiVideoSlot.src)} controls playsInline aria-label={pick(testiVideoSlot.alt, lang)} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                  <figcaption style={{ position: 'absolute', left: '16px', top: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px', height: '32px', padding: '0 12px', borderRadius: '999px', background: 'rgba(10,39,48,0.82)', color: '#FFFFFF', fontSize: '12px', fontWeight: 700, pointerEvents: 'none' }}>
-                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#C5D300' }} />
-                    {lang === 'en' ? 'International patient · in English' : 'Paciente internacional · en inglés'}
-                  </figcaption>
-                </>
-              ) : (
-                <div className="ph-d" style={{ position: 'absolute', inset: 0 }} aria-hidden="true" />
-              )}
+              <>
+                <VideoAutoplay
+                  src={testiVideoSlot?.src ? (slotUrl(testiVideoSlot.src) ?? '/videos/testimonio-reel.mp4') : '/videos/testimonio-reel.mp4'}
+                  controls
+                  playsInline
+                  aria-label={testiVideoSlot?.src ? pick(testiVideoSlot.alt, lang) : (lang === 'en' ? 'Patient testimonial' : 'Testimonio de paciente')}
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+                <figcaption style={{ position: 'absolute', left: '16px', top: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px', height: '32px', padding: '0 12px', borderRadius: '999px', background: 'rgba(10,39,48,0.82)', color: '#FFFFFF', fontSize: '12px', fontWeight: 700, pointerEvents: 'none' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#C5D300' }} />
+                  {lang === 'en' ? 'International patient · in English' : 'Paciente internacional · en inglés'}
+                </figcaption>
+              </>
             </figure>
             <div className="g-quotes" style={{ display: 'grid', gap: '16px' }}>
               {quotes.length > 0 ? quotes.map((q) => (

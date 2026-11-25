@@ -279,14 +279,26 @@ export default async function TratamientoPage({
                 </div>
               </div>
             ) : (
-              <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: '24px' }}>
-                <h2 id="f-t" style={{ margin: 0, fontSize: 'clamp(34px,4.4vw,60px)', lineHeight: 1, letterSpacing: '-0.035em', fontWeight: 800, maxWidth: '760px', textWrap: 'balance' as never }}>
-                  {fueText.t1 ?? (lang === 'en' ? 'How it' : 'Cómo')}{' '}
-                  <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#0196AD' }}>{fueText.t2 ?? (lang === 'en' ? 'works.' : 'funciona.')}</span>
-                </h2>
-                {fueText.text && (
-                  <p style={{ margin: 0, maxWidth: '380px', fontSize: '16px', color: '#4B5F66' }}>{fueText.text}</p>
-                )}
+              <div className="g-two" style={{ display: 'grid', gap: 'clamp(32px,5vw,72px)', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                  <h2 id="f-t" style={{ margin: 0, fontSize: 'clamp(34px,4.4vw,60px)', lineHeight: 1, letterSpacing: '-0.035em', fontWeight: 800, textWrap: 'balance' as never }}>
+                    {fueText.t1 ?? (lang === 'en' ? 'How it' : 'Cómo')}{' '}
+                    <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#0196AD' }}>{fueText.t2 ?? (lang === 'en' ? 'works.' : 'funciona.')}</span>
+                  </h2>
+                  {fueText.text && (
+                    <p style={{ margin: 0, fontSize: 'clamp(17px,1.4vw,20px)', lineHeight: 1.6, color: '#24414A' }}>{fueText.text}</p>
+                  )}
+                </div>
+                <div style={{ position: 'relative', borderRadius: '28px', overflow: 'hidden', background: '#0A2730', aspectRatio: '9/16', maxHeight: '520px' }}>
+                  <VideoAutoplay
+                    src="/videos/video-por-que.mp4"
+                    poster="/images/poster-por-que.jpg"
+                    controls
+                    playsInline
+                    aria-label={lang === 'en' ? 'Video: Why choose Dr Follicle Solutions?' : 'Video: ¿Por qué elegir Dr Follicle Solutions?'}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
               </div>
             )}
 

@@ -117,6 +117,9 @@ Todos son Node ESM, leen `.env.local` para las keys de Supabase.
 | `seed-contacto-metodo.mjs` | EN para `contacto.hero.avisos` (2 items) y `nuestro-metodo.etapas.etapas` (4 items) |
 | `fix-nav-order.mjs` | Reordena posiciones del navbar en `settings.nav_main` |
 | `check-nav.mjs` | Imprime el estado actual de `nav_main` en Supabase |
+| `update-cejas-image.mjs` | Actualizó path de media `images/cejas.jpg` → `images/cejas-resultado.png` |
+| `add-case5.mjs` | Insertó caso #5 en Supabase (res-1-postop.webp antes / res-3-resultado.webp después) |
+| `check-hero-slots.mjs` | Diagnóstico: imprime slots del hero y estado de casos/media en Supabase |
 
 **Patrón de seed para list items:**
 ```js
@@ -137,11 +140,11 @@ updateListItem(pageSlug, sectionKey, listKey, esT, enData)
 
 | Componente | CMS key | Notas |
 |---|---|---|
-| `HeroSection` | `hero` | 3 círculos con imágenes del CMS |
+| `HeroSection` | `hero` | 3 círculos con imágenes del CMS (slots 0-2: res-1-postop, res-2-crecimiento, res-3-resultado) |
 | `ConfianzaSection` | `confianza` | Logos + stats |
-| `TratamientosSection` | `tratamientos` | Grid 4 cards; CardT1 usa video `/videos/beard-treatment.mp4`; CardT4 usa imagen `/images/terapias-cirujano.jpg` |
-| `ResultadosSection` | `resultados` | Comparador antes/después |
-| `CienciaSection` | `ciencia` | Card "No duele." usa video `/videos/does-it-hurt.mp4` |
+| `TratamientosSection` | `tratamientos` | Grid 4 cards; hrefs usan `/servicios/${slug}`; CardT1 usa video `/videos/beard-treatment.mp4`; CardT4 usa imagen `/images/terapias-cirujano.jpg` |
+| `ResultadosSection` | `resultados` | Comparador antes/después; 5 casos (slider muestra hasta 5 miniaturas) |
+| `CienciaSection` | `ciencia` | Video `/videos/does-it-hurt.mp4` en cápsula grande arriba (testimonio prominente); sin card pequeño |
 | `ProcesoSection` / `ProcesoStepper` | `proceso` | Stepper 5 etapas; Etapa 1 muestra iframe YouTube `IurbJx78HvU` |
 | `GarantiasSection` | `especialistas` | Video `/videos/when-does-it-grow.mp4` + 6 diferenciadores |
 | `TurismoSection` | `turismo` | Fondo verde oscuro; iframe YouTube Short `X4N6CAHaYjc` |
@@ -165,6 +168,7 @@ updateListItem(pageSlug, sectionKey, listKey, esT, enData)
 
 - **`trasplante-capilar`** — Sección FUE: layout 2 col, video `how-long-capilar.mp4` derecha (aspecto 9/16). Lógica: `slug === 'trasplante-capilar'`.
 - **`terapias-capilares`** — Hero fallback: imagen `/images/terapias-cirujano.jpg`. Lógica: `slug === 'terapias-capilares'`.
+- **`trasplante-de-cejas`** — Imagen del tratamiento: `images/cejas-resultado.png` (Supabase media). Variantes disponibles: `cejas-proceso.png` (3 paneles) y `cejas-trasplante.png` (antes/después inmediato) en `public/images/`.
 
 ---
 
@@ -173,7 +177,7 @@ updateListItem(pageSlug, sectionKey, listKey, esT, enData)
 | Archivo | Dónde se usa |
 |---|---|
 | `beard-treatment.mp4` | CardT1 de Tratamientos |
-| `does-it-hurt.mp4` | CienciaSection |
+| `does-it-hurt.mp4` | CienciaSection — cápsula grande arriba (testimonio) |
 | `when-does-it-grow.mp4` | GarantiasSection |
 | `how-long-capilar.mp4` | Sección FUE en `/servicios/trasplante-capilar` |
 | `testimonio-reel.mp4` | TestimoniosSection |

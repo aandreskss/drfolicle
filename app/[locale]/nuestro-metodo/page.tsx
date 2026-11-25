@@ -268,9 +268,11 @@ export default async function MetodoPage({ params }: { params: Promise<{ locale:
           {/* Hero image */}
           <div style={{ position: 'relative', height: 'clamp(400px,44vw,580px)' }}>
             <div style={{ position: 'absolute', left: 0, top: 0, width: '80%', height: '90%', borderRadius: '28px 28px 999px 999px / 28px 28px 320px 320px', overflow: 'hidden', background: '#0C4A5E' }}>
-              {heroImg
-                ? <img src={heroImg} alt={lang === 'en' ? 'Dr Follicle Solutions clinic' : 'Clínica Dr Follicle Solutions'} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 35%', display: 'block' }} />
-                : <div className="ph-d" style={{ position: 'absolute', inset: 0 }} aria-hidden="true" />}
+              <img
+                src={heroImg ?? '/images/surgery-team.jpg'}
+                alt={lang === 'en' ? 'Dr Follicle Solutions medical team during FUE procedure' : 'Equipo médico Dr Follicle Solutions durante procedimiento FUE'}
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 35%', display: 'block' }}
+              />
             </div>
             {/* Stats card */}
             <div style={{ position: 'absolute', right: 0, bottom: '10%', background: '#FFFFFF', borderRadius: '24px', padding: '24px 28px', display: 'flex', flexDirection: 'column', gap: '20px', boxShadow: '0 24px 48px rgba(10,39,48,0.18)', minWidth: '180px' }}>

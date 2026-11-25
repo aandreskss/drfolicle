@@ -1,4 +1,3 @@
-import { slotUrl } from '@/lib/content/collections';
 import type { PageSection, Lang } from '@/lib/content/types';
 import { pickText, pickItem } from '@/lib/content/types';
 import { VideoAutoplay } from '@/components/ui/VideoAutoplay';
@@ -12,11 +11,6 @@ export function CienciaSection({ section, lang }: Props) {
   const text = pickText(section.data.content, lang);
   const beneficios = (section.data.lists?.beneficios?.items ?? []).filter((it) => it.visible);
   const pasos = (section.data.lists?.pasos?.items ?? []).filter((it) => it.visible);
-  const slots = section.data.slots ?? [];
-  const surgeryImg = slotUrl(slots[0]?.src);
-  const videoSrc = slotUrl(slots[1]?.src);
-  const videoPoster = slotUrl(slots[2]?.src);
-
   return (
     <section aria-labelledby="sci-t" style={{ padding: 'clamp(72px,9vw,128px) 0' }}>
       <div className="wrap" style={{ display: 'flex', flexDirection: 'column', gap: '56px' }}>
@@ -31,11 +25,22 @@ export function CienciaSection({ section, lang }: Props) {
           {/* ── Columna izquierda ── */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
-            {/* Imagen cirugía con borde redondeado en cápsula */}
-            <div className="card" style={{ height: 'clamp(300px,34vw,480px)', borderRadius: '28px 28px 400px 400px / 28px 28px 200px 200px', overflow: 'hidden', position: 'relative' }}>
-              {surgeryImg
-                ? <img src={surgeryImg} alt={slots[0]?.alt?.[lang] || slots[0]?.alt?.es || 'Equipo médico Dr Follicle Solutions'} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '35% 40%', display: 'block' }} />
-                : <div className="ph" style={{ position: 'absolute', inset: 0 }} />}
+            {/* Video "No duele" en cápsula grande */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ height: 'clamp(300px,34vw,480px)', borderRadius: '28px 28px 400px 400px / 28px 28px 200px 200px', overflow: 'hidden', position: 'relative', background: '#0A2730' }}>
+                <VideoAutoplay
+                  src="/videos/does-it-hurt.mp4"
+                  controls
+                  playsInline
+                  aria-label={lang === 'en' ? 'Video: patient shares what the procedure is like' : 'Video: paciente cuenta cómo es el procedimiento'}
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', paddingLeft: '4px' }}>
+                <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>{lang === 'en' ? 'Our patients tell it' : 'Lo cuentan nuestros pacientes'}</span>
+                <strong style={{ fontSize: '22px', letterSpacing: '-0.02em' }}>{lang === 'en' ? "It doesn't hurt." : 'No duele.'}</strong>
+                <span style={{ fontSize: '15px', color: '#4B5F66' }}>{lang === 'en' ? 'Listen to a patient share what the procedure is like.' : 'Escucha a un paciente contar cómo vive el procedimiento.'}</span>
+              </div>
             </div>
 
             {/* Grid 2x2 de beneficios */}
@@ -56,23 +61,6 @@ export function CienciaSection({ section, lang }: Props) {
               </div>
             )}
 
-            {/* Video card */}
-            <div style={{ background: '#FFFFFF', border: '1px solid #D5E3E6', borderRadius: '24px', padding: '20px', display: 'flex', gap: '22px', alignItems: 'center' }}>
-              <div style={{ flexShrink: 0, width: '132px', aspectRatio: '9 / 16', borderRadius: '16px', overflow: 'hidden', background: '#0A2730' }}>
-                <VideoAutoplay
-                  src="/videos/does-it-hurt.mp4"
-                  controls
-                  playsInline
-                  aria-label={lang === 'en' ? 'Video: patient shares what the procedure is like' : 'Video: paciente cuenta cómo es el procedimiento'}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>{lang === 'en' ? 'Our patients tell it' : 'Lo cuentan nuestros pacientes'}</span>
-                <strong style={{ fontSize: '24px', letterSpacing: '-0.02em' }}>{lang === 'en' ? "It doesn't hurt." : 'No duele.'}</strong>
-                <span style={{ fontSize: '15px', color: '#4B5F66' }}>{lang === 'en' ? 'Listen to a patient share what the procedure is like.' : 'Escucha a un paciente contar cómo vive el procedimiento.'}</span>
-              </div>
-            </div>
           </div>
 
           {/* ── Columna derecha: técnica FUE ── */}

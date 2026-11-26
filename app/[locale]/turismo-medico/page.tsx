@@ -266,10 +266,11 @@ export default async function TurismoPage({ params }: { params: Promise<{ locale
           <figure style={{ margin: 0, position: 'relative', minHeight: '520px', borderRadius: '28px', overflow: 'hidden', background: '#0A2730' }}>
             <>
               <VideoAutoplay
-                src={testimonioVideoSlot?.src ? (slotUrl(testimonioVideoSlot.src) ?? '/videos/testimonio-reel.mp4') : '/videos/testimonio-reel.mp4'}
+                src="/videos/testimonio-reel.mp4"
+                poster="/images/hero-patient.jpg"
                 controls
                 playsInline
-                aria-label={testimonioVideoSlot?.src ? pick(testimonioVideoSlot.alt, lang) : (lang === 'en' ? 'Patient testimonial' : 'Testimonio de paciente')}
+                aria-label={lang === 'en' ? 'Patient testimonial' : 'Testimonio de paciente'}
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
               <figcaption style={{ position: 'absolute', left: '16px', top: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px', height: '32px', padding: '0 12px', borderRadius: '999px', background: 'rgba(10,39,48,0.82)', color: '#FFFFFF', fontSize: '12px', fontWeight: 700, pointerEvents: 'none' }}>

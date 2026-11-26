@@ -14,18 +14,17 @@ export interface BlogPost {
   author: string;
 }
 
-const FALLBACK_IMGS: Record<string, string> = {
-  trasplante: '/images/surgery-team.jpg',
-  turismo: '/images/medellin-provenza.jpg',
-  caida: '/images/terapias-cirujano.jpg',
+const SLUG_IMGS: Record<string, string> = {
+  'all-inclusive-hair-transplant-package-medellin': '/images/blog-all-inclusive.jpg',
+  'hair-loss-treatment': '/images/blog-hair-loss.jpg',
+  'hair-transplant-medellin-safe': '/images/blog-medellin-city.jpg',
+  'hair-transplant-timeline-what-to-expect-month-by-month': '/images/blog-timeline.jpg',
+  'finasteride-before-hair-transplant': '/images/blog-finasteride.jpg',
 };
-const DEFAULT_IMG = '/images/hero-patient.jpg';
+const DEFAULT_IMG = '/images/surgery-team.jpg';
 
-function coverFallback(cat: string): string {
-  if (cat.toLowerCase().includes('trasplante') || cat.toLowerCase().includes('transplant')) return FALLBACK_IMGS.trasplante;
-  if (cat.toLowerCase().includes('turismo') || cat.toLowerCase().includes('tourism')) return FALLBACK_IMGS.turismo;
-  if (cat.toLowerCase().includes('ca') ) return FALLBACK_IMGS.caida;
-  return DEFAULT_IMG;
+function coverFallback(slug: string): string {
+  return SLUG_IMGS[slug] ?? DEFAULT_IMG;
 }
 
 const CATS_ES = ['Todos', 'Trasplante capilar', 'Caída del cabello', 'Turismo médico'];
@@ -122,7 +121,7 @@ export function BlogClient({ posts, lang }: { posts: BlogPost[]; lang: Lang }) {
           style={{ display: 'grid', gap: 0, background: '#FFFFFF', borderRadius: '32px', overflow: 'hidden', textDecoration: 'none', color: '#0A2730' }}
         >
           <div style={{ position: 'relative', minHeight: '420px', overflow: 'hidden', background: '#E3F2F4' }}>
-            <img src={feat.coverSrc ?? coverFallback(feat.cat)} alt={feat.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <img src={feat.coverSrc ?? coverFallback(feat.slug)} alt={feat.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             <span style={{ position: 'absolute', left: '20px', top: '20px', height: '32px', padding: '0 12px', borderRadius: '999px', background: '#C5D300', color: '#0A2730', fontSize: '11px', fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center' }}>
               {lang === 'en' ? 'Featured' : 'Destacado'}
             </span>
@@ -150,7 +149,7 @@ export function BlogClient({ posts, lang }: { posts: BlogPost[]; lang: Lang }) {
               style={{ display: 'flex', flexDirection: 'column', gap: '16px', textDecoration: 'none', color: '#0A2730' }}
             >
               <div style={{ height: '240px', borderRadius: '24px', overflow: 'hidden', position: 'relative', background: '#E3F2F4' }}>
-                <img src={p.coverSrc ?? coverFallback(p.cat)} alt={p.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img src={p.coverSrc ?? coverFallback(p.slug)} alt={p.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
               <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, color: '#007A8C' }}>{p.cat}</span>
               <strong className="pt" style={{ fontSize: '22px', lineHeight: 1.2, letterSpacing: '-0.015em', transition: 'color .18s' }}>{p.title}</strong>

@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { getPost, getAllMedia } from '@/lib/content/collections';
 
+export const dynamic = 'force-dynamic';
+
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import type { Lang, PostBlock } from '@/lib/content/types';
 import { pick } from '@/lib/content/types';

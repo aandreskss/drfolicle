@@ -7,6 +7,8 @@ import type { Lang } from '@/lib/content/types';
 import { pick } from '@/lib/content/types';
 import { Link } from '@/i18n/navigation';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Blog de restauración capilar',
   description: 'Artículos sobre trasplante capilar, técnica FUE, cuidado del cabello y turismo médico en Medellín.',

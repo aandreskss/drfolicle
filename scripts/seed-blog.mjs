@@ -23,6 +23,14 @@ const articles = [
   {
     slug: 'all-inclusive-hair-transplant-package-medellin',
     published_at: '2026-10-23T10:00:00+00:00',
+    title: {
+      es: 'Paquete todo incluido para trasplante capilar en Medellín: qué incluye y cómo funciona',
+      en: 'All-Inclusive Hair Transplant Package in Medellín: What to Expect',
+    },
+    excerpt: {
+      es: 'Qué incluye realmente un paquete todo incluido para trasplante capilar: desde la atención médica hasta el alojamiento y la logística.',
+      en: 'Understanding what a package actually includes — from medical care to accommodation and logistics — before making any decision.',
+    },
     body: {
       es: [
         { type: 'p', text: 'Los pacientes que consideran un trasplante de cabello en el extranjero suelen enfrentarse a preguntas sobre costos, alojamiento, cuidados postoperatorios y selección de clínica. Entender qué incluye realmente un paquete es fundamental antes de tomar cualquier decisión.' },
@@ -93,6 +101,14 @@ const articles = [
   {
     slug: 'hair-loss-treatment',
     published_at: '2026-10-15T10:00:00+00:00',
+    title: {
+      es: 'Tratamiento para la caída del cabello: qué funciona, qué esperar y cómo elegir la opción correcta',
+      en: 'Hair Loss Treatment: What Works, What to Expect, and How to Choose the Right Option',
+    },
+    excerpt: {
+      es: 'Antes de elegir un tratamiento para la caída del cabello, es útil entender qué la causa y qué opciones tienen evidencia real detrás.',
+      en: 'Before choosing a hair loss treatment, it helps to understand what\'s causing your hair to fall out — and which options have real evidence behind them.',
+    },
     body: {
       es: [
         { type: 'p', text: 'Notar más cabello en la ducha, en la almohada o en el cepillo puede ser inquietante. Quizás tu línea frontal se ve diferente a como era hace un año. Tal vez tu raya parece más ancha, tu cola de caballo se siente más delgada o tu cuero cabelludo se ha vuelto más visible en ciertas áreas.' },
@@ -185,6 +201,14 @@ const articles = [
   {
     slug: 'hair-transplant-medellin-safe',
     published_at: '2026-10-05T10:00:00+00:00',
+    title: {
+      es: 'Trasplante de cabello en Medellín: lo que necesitas saber sobre la ciudad, la seguridad y tu experiencia',
+      en: 'Hair Transplant in Medellín: What You Need to Know About the City, Safety, and Your Experience',
+    },
+    excerpt: {
+      es: 'Cómo es realmente visitar Medellín para un trasplante capilar: la ciudad, la experiencia y lo que los pacientes internacionales deben saber.',
+      en: 'What it\'s actually like to visit Medellín for a hair transplant — the city, the experience, and what international patients should know.',
+    },
     body: {
       es: [
         { type: 'p', text: 'Si estás investigando un trasplante de cabello en Medellín, probablemente te preguntas más que si el procedimiento en sí es seguro. Quizás también te preguntas: ¿Es Medellín segura para los pacientes internacionales? ¿Dónde me hospedaría? ¿Cómo es la ciudad durante la recuperación? ¿Puedo realmente disfrutar del viaje mientras estoy allí?' },
@@ -259,6 +283,14 @@ const articles = [
   {
     slug: 'hair-transplant-timeline-what-to-expect-month-by-month',
     published_at: '2026-09-21T10:00:00+00:00',
+    title: {
+      es: 'Cronograma del trasplante de cabello: qué esperar mes a mes',
+      en: 'Hair Transplant Timeline: What to Expect Month by Month',
+    },
+    excerpt: {
+      es: 'Una mirada honesta a lo que realmente le sucede a tu cabello en los meses posteriores al trasplante, para que sepas qué esperar en cada etapa.',
+      en: 'An honest look at what actually happens to your hair in the months after a transplant, so you know what to expect at each stage.',
+    },
     body: {
       es: [
         { type: 'p', text: 'Decidirse a realizarse un trasplante de cabello es una decisión importante. Una vez que el procedimiento queda atrás, la mayoría de los pacientes quieren saber una cosa por encima de todo: ¿cuándo verán resultados?' },
@@ -325,6 +357,14 @@ const articles = [
   {
     slug: 'finasteride-before-hair-transplant',
     published_at: '2026-09-04T10:00:00+00:00',
+    title: {
+      es: 'Finasterida antes del trasplante de cabello: ¿la necesitas?',
+      en: 'Finasteride Before a Hair Transplant: Do You Need It?',
+    },
+    excerpt: {
+      es: 'Qué hace realmente la finasterida, quién podría beneficiarse de ella antes de la cirugía y por qué no es un requisito universal.',
+      en: 'What finasteride actually does, who might benefit from it before surgery, and why it isn\'t a universal requirement.',
+    },
     body: {
       es: [
         { type: 'p', text: 'Si estás considerando un trasplante de cabello, es probable que ya hayas encontrado el medicamento finasterida. Algunas clínicas lo recomiendan antes de la cirugía. Otras lo mencionan después. Y algunos pacientes se preguntan si lo necesitan en absoluto.' },
@@ -395,7 +435,7 @@ async function main() {
     console.log(`Updating: ${article.slug}`);
     const { error } = await supabase
       .from('posts')
-      .update({ body: article.body, published_at: article.published_at })
+      .update({ title: article.title, excerpt: article.excerpt, body: article.body, published_at: article.published_at })
       .eq('slug', article.slug);
 
     if (error) {

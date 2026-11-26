@@ -232,10 +232,6 @@ export default async function MetodoPage({ params }: { params: Promise<{ locale:
 
   return (
     <>
-      <div className="wrap pt-6">
-        <Breadcrumbs crumbs={[{ label: lang === 'en' ? 'Our method' : 'Nuestro método' }]} homeLabel={homeLabel} />
-      </div>
-
       {/* ── HERO ── */}
       <section className="dark" aria-labelledby="met-h" style={{ background: TEAL_BG, color: '#FFFFFF', padding: 'clamp(40px,6vw,80px) 0 clamp(72px,8vw,112px)', overflow: 'hidden' }}>
         <div className="wrap g-hero" style={{ display: 'grid', gap: 'clamp(40px,5vw,72px)', alignItems: 'center' }}>

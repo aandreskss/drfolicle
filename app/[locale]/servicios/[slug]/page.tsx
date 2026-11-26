@@ -271,6 +271,7 @@ export default async function TratamientoPage({
                 <div style={{ position: 'relative', borderRadius: '28px', overflow: 'hidden', background: '#0A2730', aspectRatio: '9/16', maxHeight: '520px' }}>
                   <VideoAutoplay
                     src="/videos/how-long-capilar.mp4"
+                    poster="/images/poster-duracion.jpg"
                     controls
                     playsInline
                     aria-label={lang === 'en' ? 'Video: When does hair grow after the transplant?' : 'Video: ¿Cuándo crece el cabello después del trasplante?'}

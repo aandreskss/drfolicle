@@ -3,15 +3,8 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
-import { getPost, getPosts, getAllMedia } from '@/lib/content/collections';
+import { getPost, getAllMedia } from '@/lib/content/collections';
 
-export async function generateStaticParams() {
-  const posts = await getPosts();
-  return posts.flatMap((post) => [
-    { locale: 'es', slug: post.slug },
-    { locale: 'en', slug: post.slug },
-  ]);
-}
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import type { Lang, PostBlock } from '@/lib/content/types';
 import { pick } from '@/lib/content/types';
